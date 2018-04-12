@@ -43,7 +43,7 @@ video {
     border: 1px solid #366270;
 }
 
-.login-form button[type="submit"] {
+.login-form a#login {
     background-color: #366270;
     color: #252430;
     border:1px solid #366270;
@@ -54,7 +54,7 @@ video {
     text-transform: capitalize;
 }
 
-.login-form button[type="submit"] {
+.login-form a#login {
     float: right
 }
 input::-webkit-input-placeholder,
@@ -63,7 +63,7 @@ input:-ms-input-placeholder,
 input:-moz-placeholder {
     color: #366270;
 }
-.login-form button[type="submit"]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+.login-form a#login::-webkit-input-placeholder { /* Chrome/Opera/Safari */
 color: red;
 }
 ::-moz-placeholder { /* Firefox 19+ */
