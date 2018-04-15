@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <router-link to="/Home">Submit</router-link>
+            <router-link to="/Home" class="submitLogin btn">Submit</router-link>
             <!-- <button type="submit" class="btn btn-default">Submit</button> -->
         </form>
     </div>
@@ -82,10 +82,13 @@ video {
     border: 1px solid #366270;
 }
 
-.login-form button[type="submit"] {
-    background-color: #366270;
+.login-form .submitLogin {
+      background-color: #366270;
     color: #252430;
-    border:1px solid #366270;
+    border: 1px solid #366270;
+    padding: 3px 10px;
+    border-radius: 3px;
+    float: right;
 }
 
 .login-form label {
