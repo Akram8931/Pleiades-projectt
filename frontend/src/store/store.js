@@ -2,10 +2,9 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 
-
 Vue.use(Vuex);
 
-const State = {
+const state = {
   USStates: [
     ['Alabama', 12],
     ['Alaska', 121],
@@ -90,21 +89,7 @@ const State = {
 
 const getters = {};
 
-const mutations = {
-  SetUSMapData(state, Res) {
-    state.USStates = Res;
-  },
-
-  SetGenderData(state, Res) {
-    state.GenderData = Res;
-  },
-  SetAgeData(state, Res) {
-    state.AgeData = Res;
-  },
-  SetRaceData(state, Res) {
-    state.RaceData = Res;
-  },
-};
+const mutations = {};
 
 const actions = {
   // api of US Map
@@ -130,7 +115,7 @@ const actions = {
 };
 
 const store = new Vuex.Store({
-  State,
+  state,
   getters,
   mutations,
   actions,

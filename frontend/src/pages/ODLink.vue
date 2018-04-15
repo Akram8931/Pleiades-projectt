@@ -30,7 +30,7 @@
      <router-link  to="/ODLink/Demographic"> Demographic</router-link>
 <router-link  to=""> Functional Capability </router-link>
 <router-link  to=""> Cross Org Capability</router-link>
-<router-view/>                
+<router-view/>
                     </div>
                 </main>
 
