@@ -5,6 +5,7 @@ import Home from '@/pages/Home';
 import OD from '@/pages/OD';
 import ODLink from '@/pages/ODLink';
 import Demographic from '@/components/Demographic';
+import ChartSankey from '@/components/ChartSankey';
 
 Vue.use(Router);
 
@@ -15,6 +16,11 @@ export default new Router({
       name: 'Login',
       component: Login,
     },
+    // {
+    //   path: '/',
+    //   name: 'ChartSankey',
+    //   component: ChartSankey,
+    // },
     {
       path: '/Home',
       name: 'Home',
@@ -31,6 +37,7 @@ export default new Router({
       component: ODLink,
       children: [
         { path: '', component: Demographic },
+        { path: '', component: ChartSankey },
       ],
     },
 
