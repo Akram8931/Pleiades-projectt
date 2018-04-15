@@ -30,15 +30,9 @@ export default new Router({
       name: 'ODLink',
       component: ODLink,
       children: [
-        // UserHome will be rendered inside User's <router-view>
-        // when /user/:id is matched
         { path: '', component: Demographic },
       ],
     },
-    // {
-    //   path: '/Demographic',
-    //   name: 'Demographic',
-    //   component: Demographic,
-    // },
+
   ],
 });
