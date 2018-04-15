@@ -10,7 +10,7 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: '/Login',
+      path: '/',
       name: 'Login',
       component: Login,
     },
@@ -25,7 +25,7 @@ export default new Router({
       component: OD,
     },
     {
-      path: '/',
+      path: '/ODMap',
       name: 'ODMap',
       component: ODMap,
     },
