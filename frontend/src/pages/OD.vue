@@ -47,9 +47,11 @@
                                     <div class="image-wrap-2">
                                         <div class="image-wrap-3">
                                             <div class="thumbnail">
-                                                <a href="" class="thumb" data-fancybox-group='1'>
-                                                    <img src="images/bigstock-Abstract-blue-background-Tech-97762865.jpg" alt="">
-                                                </a>
+                                                <router-link to="/ODLink/Demographic" class="thumb" data-fancybox-group='1'>
+                                                    <img src="../assets/images/bigstock-Abstract-blue-background-Tech-97762865.jpg" alt="">
+
+                                                </router-link>
+
 
                                                 <div class="thumbnail_overlay">
                                                     <div class="caption">
@@ -66,7 +68,7 @@
                                         <div class="image-wrap-2">
                                             <div class="thumbnail">
                                                 <a href="" class="thumb" data-fancybox-group='1'>
-                                                    <img src="images/bigstock--127460828.jpg" alt="">
+                                                    <img src="../assets/images/bigstock--127460828.jpg" alt="">
                                                 </a>
 
                                                 <div class="thumbnail_overlay thumbnail_overlay--skin">
@@ -84,7 +86,7 @@
                                         <div class="image-wrap-3">
                                             <div class="thumbnail">
                                                 <a href="" class="thumb" data-fancybox-group='1'>
-                                                    <img src="images/bigstock-best-concept-of-global-busines-15987380.jpg" alt="">
+                                                    <img src="../assets/images/bigstock-best-concept-of-global-busines-15987380.jpg" alt="">
                                                 </a>
 
                                                 <div class="thumbnail_overlay">
@@ -107,7 +109,7 @@
                                             <div class="image-wrap-2">
                                                 <div class="thumbnail">
                                                     <a href="" class="thumb" data-fancybox-group='1'>
-                                                        <img src="images/bigstock-Color-light-traces-over-black--100445951.jpg" alt="">
+                                                        <img src="../assets/images/bigstock-Color-light-traces-over-black--100445951.jpg" alt="">
                                                     </a>
 
                                                     <div class="thumbnail_overlay thumbnail_overlay--skin">
@@ -125,7 +127,7 @@
                                             <div class="image-wrap-3">
                                                 <div class="thumbnail">
                                                     <a href="" class="thumb" data-fancybox-group='1'>
-                                                        <img src="images/Pleiades Cluster 2.jpg" alt="">
+                                                        <img src="../assets/images/Pleiades Cluster 2.jpg" alt="">
                                                     </a>
 
                                                     <div class="thumbnail_overlay">
@@ -143,7 +145,7 @@
                                             <div class="image-wrap-2">
                                                 <div class="thumbnail">
                                                     <a href="" class="thumb" data-fancybox-group='1'>
-                                                        <img src="images/World-Map.jpg" alt="">
+                                                        <img src="../assets/images/World-Map.jpg" alt="">
                                                     </a>
 
                                                     <div class="thumbnail_overlay thumbnail_overlay--skin">

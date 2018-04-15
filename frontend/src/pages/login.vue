@@ -55,7 +55,6 @@ html,body{
     position: relative;
      overflow: hidden;
 }
-
 ​#myVideo {
     position: fixed;
     right: 0;
@@ -63,7 +62,6 @@ html,body{
     min-width: 100%;
     min-height: 100%;
 }
-
 video {
     max-width: 100%;
     min-width: 100%;
