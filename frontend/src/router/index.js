@@ -3,7 +3,8 @@ import Router from 'vue-router';
 import Login from '@/pages/login';
 import Home from '@/pages/Home';
 import OD from '@/pages/OD';
-import ODMap from '@/pages/ODMap';
+import ODLink from '@/pages/ODLink';
+import Demographic from '@/components/Demographic';
 
 Vue.use(Router);
 
@@ -25,9 +26,13 @@ export default new Router({
       component: OD,
     },
     {
-      path: '/ODMap',
-      name: 'ODMap',
-      component: ODMap,
+      path: '/ODLink/:ODType',
+      name: 'ODLink',
+      component: ODLink,
+      children: [
+        { path: '', component: Demographic },
+      ],
     },
+
   ],
 });
