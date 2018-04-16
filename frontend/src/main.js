@@ -5,7 +5,7 @@ import VueCharts from 'vue-charts';
 
 import App from './App';
 import router from './router';
-import { store } from './store';
+import store from './store';
 
 import './assets/css/animate.css';
 import './assets/css/grid.css';
