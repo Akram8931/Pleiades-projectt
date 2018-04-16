@@ -21,7 +21,6 @@
                 </div>
             </div>
             <router-link to="/Home" class="submitLogin btn">Submit</router-link>
-            <!-- <button type="submit" class="btn btn-default">Submit</button> -->
         </form>
     </div>
        </div>
@@ -40,10 +39,8 @@ export default {
 <style scoped>
 * {
     box-sizing: border-box;
-    /* margin: 0; */
-    /* overflow: hidden; */
 }
-html,body{
+html,body {
     max-height:100%;
     max-width: 100%;
     overflow: hidden;
@@ -53,7 +50,7 @@ html,body{
     font-family: Arial;
     font-size: 17px;
     position: relative;
-     overflow: hidden;
+    overflow: hidden;
 }
 ​#myVideo {
     position: fixed;
@@ -105,17 +102,6 @@ input:-ms-input-placeholder,
 input:-moz-placeholder {
     color: #366270;
 }
-.login-form button[type="submit"]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-color: red;
-}
-::-moz-placeholder { /* Firefox 19+ */
-color: red;
-}
-:-ms-input-placeholder { /* IE 10+ */
-color: pink;
-}
-:-moz-placeholder { /* Firefox 18- */
-color: pink;
-}
+
 </style>
 
