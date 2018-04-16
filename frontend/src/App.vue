@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <ChartSankey v-if="$store.state.sankeyData" :digramData="$store.state.sankeyData"></ChartSankey>
+    <ChartSankey></ChartSankey>
     <router-view/>
   </div>
 </template>
