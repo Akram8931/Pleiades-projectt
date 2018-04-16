@@ -25,6 +25,8 @@ app.use('/login', loginRouter);
 app.use('/users', usersRouter);
 app.use('/users', usersRouter);
 app.get('/us_map', db.getUsMap);
+app.get('/functional_capability', db.getFunctionalCapability);
+app.get('/cross_org_capability', db.getCrossOrgCapability);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
