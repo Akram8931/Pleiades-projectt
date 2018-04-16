@@ -26,11 +26,29 @@
                 </div>
                 <main>
                     <!-- <div class="circle-1"></div> -->
-                    <div class="main-wrap">
-     <router-link  to="/ODLink/Demographic"> Demographic</router-link>
-<router-link  to=""> Functional Capability </router-link>
-<router-link  to=""> Cross Org Capability</router-link>
-<router-view/>                
+                    <div class="main-wrap" style="margin-top:9%">
+                    <div class="container">
+                        <div class="col-xs-3">
+
+                        </div>
+                         <div class="col-xs-6">
+                                     <div class="col-xs-4 tabBtn" >
+     <router-link  to="/ODLink/Demographic">  Demographic</router-link>
+
+                        </div>
+                        <div class="col-xs-4 tabBtn" >
+<router-link  to="/ODLink/Functional"> Functional Capability </router-link>
+                        </div>
+<div class="col-xs-4 tabBtn">
+<router-link  to="/ODLink/Cross"> Cross Org Capability</router-link>
+                        </div>
+                        </div>
+                         <div class="col-xs-3">
+                        </div>
+
+                    </div>
+
+<router-view/>
                     </div>
                 </main>
 
@@ -43,8 +61,23 @@
 export default {
   name: 'ODLink',
   data() {
-    return {
-    };
+    return {};
   },
 };
 </script>
+
+<style scoped>
+.tabBtn {
+  background-color: #848b90;
+  color: white;
+  padding: 4px;
+  border: 1px solid #80808091;
+}
+.tabBtn .router-link-exact-active.activeLink {
+  color: black;
+}
+path {
+  stroke-width: 3 !important;
+  stroke: #555;
+}
+</style>

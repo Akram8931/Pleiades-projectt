@@ -1,20 +1,25 @@
 <template>
-    <div>
-{{message}}
-    </div>
+<div>
+<div id="visualization" style="margin: 1em"> </div>
+
+
+</div>
 </template>
 
 <script>
 export default {
-    name:'Demographic',
+  name: 'Demographic',
   data() {
     return {
-      message: 'text',
     };
   },
+  created() {
+    this.$store.dispatch('loadUSAMap');
+  },
+
 };
 </script>
 
 <style scoped>
-
 </style>
+

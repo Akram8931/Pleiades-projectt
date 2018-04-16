@@ -19,8 +19,11 @@
 body {
   font: 500 16px/30px "Raleway", sans-serif;
   -webkit-text-size-adjust: none;
-  background: #000;
+  background: #000 !important;
   color: #8f8f8f;
+}
+path {
+  stroke-width: 3 !important;
 }
 @media (min-width: 768px) {
   body {
