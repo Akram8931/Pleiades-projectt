@@ -35,7 +35,6 @@ export default {
         height: 500,
         curveType: 'function',
         is3D: true,
-        // pieSliceText: 'none',
         legend: 'none',
         chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         slices: {
@@ -52,7 +51,6 @@ export default {
         height: 500,
         curveType: 'function',
         is3D: true,
-        //pieSliceText: 'none',
         legend: 'none',
         chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         slices: {
@@ -71,7 +69,6 @@ export default {
         chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         is3D: true,
         legend: 'none',
-        // pieSliceText: 'none',
         slices: {
           0: { color: '#0c586f' },
           1: { color: 'black' },
