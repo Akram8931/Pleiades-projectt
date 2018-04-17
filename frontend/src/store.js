@@ -43,6 +43,10 @@ const store = new Vuex.Store({
       console.log("i fill it")
     },
     
+    reDrawMainChart(state){
+      console.log("he click me")
+      state.selectedNode = state.activeChartData;
+    }
   },
   actions: {
     initChart({ commit }) {

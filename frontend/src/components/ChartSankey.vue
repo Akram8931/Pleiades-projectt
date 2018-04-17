@@ -7,9 +7,8 @@
       </div>
   
       <div v-else>
-        <button v-if="viewButton" class="btn btn-primary">Back</button>
+        <button v-if="viewButton" class="btn btn-primary" @click.prevent="reDrawMainChart">Back</button>
         <div id="sankey_basic"></div>
-        <!-- {{changeData}} -->
       </div>
   
     </div>
@@ -27,7 +26,6 @@
       }
     },
     watch: {
-      // '$route': 'drawSankeyChart'
       '$route' (to, from) {
         this.$store.commit('activeChartData', to.params.name)
         this.drawSankeyChart();
@@ -54,12 +52,11 @@
   
         const self = this;
   
-        //google.setOnLoadCallback(drawChart);
+        // google.setOnLoadCallback(drawChart);
+
         drawChart()
-        console.log("lets go")
   
         function drawChart() {
-          console.log("drawwwwwwwwwwww me opa")
   
           let data = new google.visualization.DataTable();
   
@@ -106,22 +103,36 @@
             }
           });
         }
-      }
+      },
+      reDrawMainChart(){
+        this.viewButton = false;
+        console.log("click")
+        this.$store.commit('reDrawMainChart');
+        this.drawSankeyChart();
+      },
     },
     created() {
       this.$store.dispatch("initChart");
+      this.drawSankeyChart();
     }
   };
 </script>
 
 <style scoped>
+.sankey-chart{
+  text-align: left;
+}
   .btn-primary {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-    float: left;
+    color: #007bff;
+    background-color: #fff;
+    border-color: #fff;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 30px;
   }
-  svg{
+  
+  svg {
     padding-top: 50px !important;
   }
 </style>
