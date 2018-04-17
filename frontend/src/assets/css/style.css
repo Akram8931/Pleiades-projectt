@@ -2416,6 +2416,7 @@ header {
 .modal-footer .btn-primary{
   background-color: #0e586f;
     border-color: #0e586f;
+    width: 8%;
 }
 .modal-footer .btn-secondary{
   display: none;

@@ -35,8 +35,9 @@ export default {
         height: 500,
         curveType: 'function',
         is3D: true,
+        // pieSliceText: 'none',
         legend: 'none',
-        chartArea:{left:0,top:0,width:'100%',height:'100%'},
+        chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         slices: {
           0: { color: '#0c586f' },
           1: { color: 'black' },
@@ -51,8 +52,9 @@ export default {
         height: 500,
         curveType: 'function',
         is3D: true,
+        //pieSliceText: 'none',
         legend: 'none',
-        chartArea:{left:0,top:0,width:'100%',height:'100%'},
+        chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         slices: {
           0: { color: '#0c586f' },
           1: { color: 'black' },
@@ -66,9 +68,10 @@ export default {
         width: 600,
         height: 500,
         curveType: 'function',
-        chartArea:{left:0,top:0,width:'100%',height:'100%'},
+        chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         is3D: true,
         legend: 'none',
+        // pieSliceText: 'none',
         slices: {
           0: { color: '#0c586f' },
           1: { color: 'black' },
@@ -125,35 +128,35 @@ export default {
   methods: {
     drawVisualization() {
       const self = this;
-        const data = window.google.visualization.arrayToDataTable(
-          self.$store.state.USStates,
-        );
-        const opts = {
-          title: 'Popularity by Countries',
-          width: '100%',
-          height: 500,
-          region: 'US',
-          displayMode: 'regions',
-          colorAxis: { colors: ['#0c586f', 'black', '#a7b0b7'] },
-          backgroundColor: 'none',
-          datalessRegionColor: 'white',
-          defaultColor: 'white',
-          resolution: 'provinces',
-        };
-        const geochart = new window.google.visualization.GeoChart(
-          document.getElementById('visualization'),
-        );
-        geochart.draw(data, opts);
+      const data = window.google.visualization.arrayToDataTable(
+        self.$store.state.USStates,
+      );
+      const opts = {
+        title: 'Popularity by Countries',
+        width: '100%',
+        height: 500,
+        region: 'US',
+        displayMode: 'regions',
+        colorAxis: { colors: ['#0c586f', 'black', '#a7b0b7'] },
+        backgroundColor: 'none',
+        datalessRegionColor: 'white',
+        defaultColor: 'white',
+        resolution: 'provinces',
+      };
+      const geochart = new window.google.visualization.GeoChart(
+        document.getElementById('visualization'),
+      );
+      geochart.draw(data, opts);
 
-        window.google.visualization.events.addListener(
-          geochart,
-          'select',
-          () => {
-            const newStateName = self.$store.state.USStates[geochart.getSelection()[0].row + 1][0];
-            self.$store.commit('changeStateName', newStateName);
-            self.$store.dispatch('loadPieChart', newStateName);
-          },
-        );
+      window.google.visualization.events.addListener(
+        geochart,
+        'select',
+        () => {
+          const newStateName = self.$store.state.USStates[geochart.getSelection()[0].row + 1][0];
+          self.$store.commit('changeStateName', newStateName);
+          self.$store.dispatch('loadPieChart', newStateName);
+        },
+      );
     },
   },
 };
