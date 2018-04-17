@@ -2,135 +2,79 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 
-
 Vue.use(Vuex);
 
-const State = {
-  USStates: [
-    ['Alabama', 12],
-    ['Alaska', 121],
-    ['Arizona', 222],
-    ['Arkansas', 100],
-    ['California', 120],
-    ['Colorado', 140],
-    ['Connecticut', 160],
-    ['Delaware', 200],
-    ['Florida', 239],
-    ['Georgia', 234],
-    ['Hawaii', 278],
-    ['Idaho', 289],
-    ['Illinois', 290],
-    ['Indiana', 289],
-    ['Iowa', 300],
-    ['Kansas', 345],
-    ['Kentucky', 370],
-    ['Louisiana', 367],
-    ['Maine', 390],
-    ['Maryland', 400],
-    ['Massachusetts', 420],
-    ['Michigan', 450],
-    ['Minnesota', 460],
-    ['Mississippi', 576],
-    ['Missouri', 789],
-    ['Montana', 677],
-    ['Nebraska', 876],
-    ['Nevada', 453],
-    ['New Hampshire', 674],
-    ['New Jersey', 510],
-    ['New Mexico', 610],
-    ['New York', 345],
-    ['North Carolina', 349],
-    ['North Dakota', 800],
-    ['Ohio', 867],
-    ['Oklahoma', 590],
-    ['Oregon', 865],
-    ['Pennsylvania', 920],
-    ['Rhode Island', 910],
-    ['South Carolina', 860],
-    ['South Dakota', 960],
-    ['Tennessee', 7],
-    ['Texas', 32],
-    ['Utah', 765],
-    ['Vermont', 98],
-    ['Virginia', 640],
-    ['Washington', 999],
-    ['West Virginia', 943],
-    ['Wisconsin', 45],
-    ['Wyoming', 100],
-  ],
-  GenderData: [],
-  AgeData: [],
-  RaceData: [],
-
-  MSG: 'message',
-  chartEvents: {
+const state = {
+  modalShow: false,
+  USStates: [],
+  colomn: ['State', 'No of hospital employees'],
+  PieGenderRows: [],
+  PieAgeRows: [],
+  PieRaceRows: [],
+  stateName: null,
+  stateFaces: {
+    Florida: 'fl',
+    Washington_DC: 'wa',
+    Texas: 'tx',
+    Utah: 'ut',
+    Michigan: 'mi',
+    New_York: 'ny',
+    Oklahoma: 'ok',
+    Tennessee: 'tn',
+    Missouri: 'mo',
+    North_Carolina: 'nc',
+    California: 'ca',
   },
-
-
-  columns: [{
-    type: 'string',
-    label: 'State',
-  }, {
-    type: 'number',
-    label: 'No Of Employees',
-  }],
-  options: {
-    title: 'Popularity by Countries',
-    width: '100%',
-    height: 500,
-    region: 'US',
-    displayMode: 'regions',
-    colorAxis: { colors: ['#00853f', 'black', '#e31b23'] },
-    backgroundColor: 'white',
-    datalessRegionColor: '#eee',
-    defaultColor: '#f5f5f5',
-    resolution: 'provinces',
-  },
+  statePrev: '',
 };
-
 const getters = {};
-
 const mutations = {
   SetUSMapData(state, Res) {
     state.USStates = Res;
+    state.USStates.unshift(state.colomn);
   },
 
   SetGenderData(state, Res) {
-    state.GenderData = Res;
+    state.PieGenderRows = Res;
   },
   SetAgeData(state, Res) {
-    state.AgeData = Res;
+    state.PieAgeRows = Res;
   },
   SetRaceData(state, Res) {
-    state.RaceData = Res;
+    state.PieRaceRows = Res;
+  },
+  showModal() {
+    state.modalShow = !state.modalShow;
+  },
+  changeStateName(state, Selection) {
+    state.stateName = `${Selection} State`;
+    state.statePrev = state.stateFaces[Selection];
   },
 };
-
 const actions = {
   // api of US Map
   loadUSAMap(context) {
-    axios
-      .get(
-        'https://newsapi.org/v2/top-headlines?country=us&apiKey=7fbb7eab908b494395dfddbb8268ec74',
-      )
-      .then((Response) => {
-        context.commit('USStates', Response.data.articles);
-      });
+    axios.get('http://red-alphar.com/us_map').then((Response) => {
+      context.commit('SetUSMapData', Response.data);
+    });
   },
   // api of Pie Charts
-  loadPieChart(context) {
+  loadPieChart(context, stateName) {
     axios
-      .get(
-        'https://newsapi.org/v2/top-headlines?sources=&apiKey=7fbb7eab908b494395dfddbb8268ec74',
-      )
+      .get(`http://192.168.1.131:3000/race_gender_age/${stateName}`)
       .then((Response) => {
-        context.commit('GenderData', Response.data.articles);
+        context.commit('SetGenderData', Response.data.gender);
+        context.commit('SetAgeData', Response.data.age);
+        context.commit('SetRaceData', Response.data.race);
+      })
+      .then(() => {
+        context.commit('showModal');
       });
   },
 };
 
 const store = new Vuex.Store({
-  State,
+  state,
   getters,
   mutations,
   actions,

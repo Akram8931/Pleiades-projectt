@@ -19,8 +19,11 @@
 body {
   font: 500 16px/30px "Raleway", sans-serif;
   -webkit-text-size-adjust: none;
-  background: #000;
+  background: #000 !important;
   color: #8f8f8f;
+}
+#visualization path {
+  stroke-width: 3 !important;
 }
 @media (min-width: 768px) {
   body {
@@ -57,6 +60,21 @@ h6,
 h1,
 .heading-1 {
   font-size: 40px;
+}
+.modal-dialog h1,
+.modal-dialog h2,
+.modal-dialog h3,
+.modal-dialog h4,
+.modal-dialog h5,
+.modal-dialog h6,
+.modal-dialog .heading-1,
+.modal-dialog .heading-2,
+.modal-dialog .heading-3,
+.modal-dialog .heading-4,
+.modal-dialog .heading-5,
+.modal-dialog .heading-6 {
+  font-weight: 700;
+  color:black;
 }
 
 h2,
@@ -243,6 +261,7 @@ h2 + .row {
 @media (min-width: 768px) {
   .offset-3 {
     margin-top: -17px;
+    margin-left:0px !important;
   }
 }
 
@@ -2392,6 +2411,28 @@ header {
   text-align: center;
   position: relative;
 }
+.modal-footer .btn-primary{
+  background-color: #0e586f;
+    border-color: #0e586f;
+}
+.modal-footer .btn-secondary{
+  display: none;
+}
+@font-face {
+  font-family: 'StateFaceRegular';
+  src: url('../fonts/stateface-regular-webfont.eot');
+  src: url('../fonts/stateface-regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/stateface-regular-webfont.woff') format('woff'),
+       url('../fonts/stateface-regular-webfont.ttf') format('truetype'),
+       url('../fonts/stateface-regular-webfont.svg#StateFaceRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.minimap {
+  font-family: 'StateFaceRegular';
+  text-align: center;
+  vertical-align: top;
+}
 @media (min-width: 768px) {
   header .rd-navbar {
     font-weight: 700;
@@ -2477,4 +2518,11 @@ footer .copyright {
   text-align: center;
   position: relative;
   padding-top: 200px;
+}
+
+@media (min-width: 576px){
+.modal-dialog {
+    max-width: 80%;
+    margin: 1.75rem auto;
+}
 }
