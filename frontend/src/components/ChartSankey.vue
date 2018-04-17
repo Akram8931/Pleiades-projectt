@@ -97,6 +97,10 @@
         }
       }
     }
+    ,
+  created() {
+      this.$store.dispatch("initChart");
+  }
   };
 </script>
 
