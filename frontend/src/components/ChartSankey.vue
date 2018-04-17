@@ -51,7 +51,6 @@
         const self = this;
 
         google.setOnLoadCallback(drawChart);
-        console.log(google)
 
         console.log("lets go")
   
@@ -83,6 +82,7 @@
           );
   
           chart.draw(data, options);
+
           window.google.visualization.events.addListener(chart, "select", () => {
             let sel = chart.getSelection();
   
@@ -94,11 +94,6 @@
           });
         }
       }
-    },
-    created() {
-        
-      this.$store.dispatch("initChart");
-  
     }
   };
 </script>
