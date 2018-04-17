@@ -11,12 +11,13 @@
       <div class="col-xs-4">
         <vue-chart chart-type="PieChart" :columns="PieGenderColumns" :rows="$store.state.PieGenderRows" :options="PieGenderOptions"></vue-chart>
       </div>
-        <div class="col-xs-4">
+         <div class="col-xs-4">
 <vue-chart chart-type="PieChart" :columns="PieAgeColumns" :rows="$store.state.PieAgeRows" :options="PieAgeOptions"></vue-chart>
       </div>
 <div class="col-xs-4">
 <vue-chart chart-type="PieChart" :columns="PieRaceColumns" :rows="$store.state.PieRaceRows" :options="PieRaceOptions"></vue-chart>
       </div>
+     
       </div>
     </b-modal>
   </div>
@@ -31,7 +32,7 @@ export default {
     return {
       PieGenderOptions: {
         title: 'GENDER',
-        width: 600,
+        width: 650,
         height: 500,
         curveType: 'function',
         is3D: true,
@@ -47,7 +48,7 @@ export default {
       },
       PieAgeOptions: {
         title: 'Age',
-        width: 600,
+        width: 650,
         height: 500,
         curveType: 'function',
         is3D: true,
@@ -63,7 +64,7 @@ export default {
       },
       PieRaceOptions: {
         title: 'Race',
-        width: 600,
+        width: 650,
         height: 500,
         curveType: 'function',
         chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
