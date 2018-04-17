@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 
 const state = {
+  modalShow: false,
   USStates: [],
   AllUSStates: [],
   colomn: ['State', 'No of hospital employees'],
@@ -19,12 +20,33 @@ const state = {
       label: 'Sales',
     },
   ],
-  PieGenderRows: [],
-  PieAgeRows: [],
-  PieRaceRows: [],
+  PieGenderRows: [
+    ['Age2004', 1000],
+    ['Age2005', 1170],
+    ['Age2006', 660],
+    ['Age2007', 1030],
+    ['Age2007', 1030],
+    ['Age2008', 1000],
+  ],
+  PieAgeRows: [
+    ['Age2004', 1000],
+    ['Age2005', 1170],
+    ['Age2006', 660],
+    ['Age2007', 1030],
+    ['Age2007', 1030],
+    ['Age2008', 1000],
+  ],
+  PieRaceRows: [
+    ['Age2004', 1000],
+    ['Age2005', 1170],
+    ['Age2006', 660],
+    ['Age2007', 1030],
+    ['Age2007', 1030],
+    ['Age2008', 1000],
+  ],
   PieGenderOptions: {
     title: 'GENDER',
-    width: 700,
+    width: 600,
     height: 500,
     curveType: 'function',
     is3D: true,
@@ -39,7 +61,7 @@ const state = {
   },
   PieAgeOptions: {
     title: 'Age',
-    width: 700,
+    width: 600,
     height: 500,
     curveType: 'function',
     is3D: true,
@@ -54,7 +76,7 @@ const state = {
   },
   PieRaceOptions: {
     title: 'Race',
-    width: 700,
+    width: 600,
     height: 500,
     curveType: 'function',
     is3D: true,
@@ -84,7 +106,7 @@ const mutations = {
   SetRaceData(state, Res) {
     state.RaceData = Res;
   },
-  DrawMapChart() {
+  DrawMapChart(state) {
     window.google.load('visualization', '1', { packages: ['geochart'] });
     const data = window.google.visualization.arrayToDataTable(state.USStates);
 
@@ -104,6 +126,18 @@ const mutations = {
       document.getElementById('visualization'),
     );
     geochart.draw(data, opts);
+
+    window.google.visualization.events.addListener(geochart, 'select', () => {
+      debugger;
+      const selection = geochart.getSelection()[0];
+      const stateName = state.USStates[selection.row + 1];
+      state.modalShow = !state.modalShow;
+      // state.dispatch('loadPieChart', stateName);
+    });
+  },
+  showModal() {
+    debugger;
+    state.modalShow = !state.modalShow;
   },
 };
 const actions = {
@@ -120,11 +154,13 @@ const actions = {
   },
   // api of Pie Charts
   loadPieChart(context, stateName) {
-    axios.get(`/user?stateName=${stateName}`).then((Response) => {
-      context.commit('GenderData', Response.data.GenderData);
-      context.commit('SetAgeData', Response.data.AgeData);
-      context.commit('SetRaceData', Response.data.RaceData);
-    });
+    debugger;
+    //   axios.get(`/user?stateName=${stateName}`).then((Response) => {
+    // //   context.commit('GenderData', Response.data.GenderData);
+    //     context.commit('SetAgeData', Response.data.AgeData);
+    //     context.commit('SetRaceData', Response.data.RaceData);
+    //   });
+    context.commit('showModal');
   },
 };
 
