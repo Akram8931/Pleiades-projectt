@@ -6,16 +6,23 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    sankeyData: [['A', 'X', 5], ['A', 'Y', 7], ['A', 'Z', 6], ['B', 'X', 2], ['B', 'Y', 9], ['B', 'Z', 4]],
+    functionalChartData: [],
+    crossOrgChartData: [],
+    activeChartData: [],
     selectedNode: [],
+    
   },
   mutations: {
-    setChartData(state, sankeyData) {
-      state.sankeyData = sankeyData;
-      state.selectedNode = state.sankeyData;
+    setFunctionalChartData(state, payload) {
+      state.functionalChartData = payload;
     },
+
+    setCrossOrgChartData(state, payload) {
+      state.crossOrgChartData = payload;
+    },
+
     getSelectedNode(state, selectedNodeName) {
-      state.selectedNode = _.filter(state.sankeyData, (o) => {
+      state.selectedNode = _.filter(state.activeChartData, (o) => {
 
         if (o.indexOf(selectedNodeName) > -1) {
           return o;
@@ -23,20 +30,40 @@ const store = new Vuex.Store({
 
       });
     },
+
+    activeChartData(state, payload) {
+
+      if (payload === 'functional') {
+        state.activeChartData = state.functionalChartData;
+      } else if (payload === 'cross-org') {
+        state.activeChartData = state.crossOrgChartData;
+      }
+
+      state.selectedNode = state.activeChartData;
+      console.log("i fill it")
+    },
+    
   },
   actions: {
     initChart({ commit }) {
       axios.get('http://red-alphar.com/functional_capability')
         .then((response) => {
-          commit('setChartData', response.data);
-          console.log(response.data);
-          console.log("i got it")
+          commit('setFunctionalChartData', response.data);
+
         })
         .catch((error) => {
           console.log(error);
         });
 
-      // commit('setChartData', [['A', 'X', 5], ['A', 'Y', 7], ['A', 'Z', 6], ['B', 'X', 2], ['B', 'Y', 9], ['B', 'Z', 4]]);
+      axios.get('http://red-alphar.com/cross_org_capability')
+        .then((response) => {
+          commit('setCrossOrgChartData', response.data);
+
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
     },
   },
 });
