@@ -28,6 +28,8 @@
       // '$route': 'drawSankeyChart'
       '$route' (to, from) {
         this.$store.commit('activeChartData', to.params.name)
+        this.drawSankeyChart();
+        
       },
       dataLoaded(){
         this.$store.commit('activeChartData', this.$route.params.name)
