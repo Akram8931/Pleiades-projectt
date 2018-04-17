@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <ChartSankey></ChartSankey>
     <router-view/>
   </div>
 </template>
@@ -13,6 +12,9 @@ export default {
   components: {
     ChartSankey,
   },
+  created() {
+      this.$store.dispatch("initChart");
+  }
 };
 </script>
 
