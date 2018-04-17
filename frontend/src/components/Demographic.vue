@@ -36,6 +36,7 @@ export default {
         curveType: 'function',
         is3D: true,
         legend: 'none',
+        chartArea:{left:0,top:0,width:'100%',height:'100%'},
         slices: {
           0: { color: '#0c586f' },
           1: { color: 'black' },
@@ -51,6 +52,7 @@ export default {
         curveType: 'function',
         is3D: true,
         legend: 'none',
+        chartArea:{left:0,top:0,width:'100%',height:'100%'},
         slices: {
           0: { color: '#0c586f' },
           1: { color: 'black' },
@@ -64,6 +66,7 @@ export default {
         width: 600,
         height: 500,
         curveType: 'function',
+        chartArea:{left:0,top:0,width:'100%',height:'100%'},
         is3D: true,
         legend: 'none',
         slices: {
@@ -86,7 +89,7 @@ export default {
       ],
       PieAgeColumns: [
         {
-          type: 'number',
+          type: 'string',
           label: 'Age',
         },
         {

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import { stat } from 'fs';
 
 Vue.use(Vuex);
 
@@ -24,6 +25,7 @@ const state = {
     Missouri: 'mo',
     North_Carolina: 'nc',
     California: 'ca',
+    Illinois: 'il',
   },
   statePrev: '',
 };
@@ -48,7 +50,12 @@ const mutations = {
   },
   changeStateName(state, Selection) {
     state.stateName = `${Selection} State`;
-    state.statePrev = state.stateFaces[Selection];
+    if (Selection.split(' ').length === 1) {
+      state.statePrev = state.stateFaces[Selection];
+    } else {
+      const newSelection = `${Selection.split(' ')[0]}_${Selection.split(' ')[1]}`;
+      state.statePrev = state.stateFaces[newSelection];
+    }
   },
 };
 const actions = {
