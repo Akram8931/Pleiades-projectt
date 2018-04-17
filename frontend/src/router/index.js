@@ -37,9 +37,8 @@ export default new Router({
       component: ODLink,
       children: [
         { path: '', component: Demographic },
-        { path: '', component: ChartSankey },
+        { path: ':name', component: ChartSankey },
       ],
     },
-
   ],
 });
