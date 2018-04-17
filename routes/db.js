@@ -39,6 +39,25 @@ module.exports.getCrossOrgCapability = function(req, res, next) {
 	});
 };
 
-
-
-
+module.exports.getRaceGenderAge = function(req, res, next) {
+	var data = {race: [], gender: [], age: []};
+	connection.query("SELECT race, count(race) AS race_count FROM presence.od where state_resides_in = '" + req.params['state'] + "' GROUP BY race", function (err, result, fields) {
+		if (err) throw err;
+		for (var i = 0; i < result.length; i++) {
+			data.race.push([result[i].race, result[i].race_count])
+		}
+		connection.query("SELECT gender, count(gender) AS gender_count FROM presence.od where state_resides_in = '" + req.params['state'] + "' GROUP BY gender", function (err, result, fields) {
+			if (err) throw err;
+			for (var i = 0; i < result.length; i++) {
+				data.gender.push([result[i].gender, result[i].gender_count])
+			}
+			connection.query("SELECT age, count(age) AS age_count FROM presence.od where state_resides_in = '" + req.params['state'] + "' GROUP BY age", function (err, result, fields) {
+				if (err) throw err;
+				for (var i = 0; i < result.length; i++) {
+					data.age.push([result[i].age, result[i].age_count])
+				}
+				res.send(data);
+			});
+		});
+	});
+};
