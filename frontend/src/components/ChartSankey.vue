@@ -7,8 +7,9 @@
       </div>
   
       <div v-else>
+        <button v-if="viewButton" class="btn btn-primary">Back</button>
         <div id="sankey_basic"></div>
-        {{changeData}}
+        <!-- {{changeData}} -->
       </div>
   
     </div>
@@ -22,6 +23,7 @@
     data() {
       return {
         loading: false,
+        viewButton: false
       }
     },
     watch: {
@@ -29,12 +31,12 @@
       '$route' (to, from) {
         this.$store.commit('activeChartData', to.params.name)
         this.drawSankeyChart();
-        
+  
       },
-      dataLoaded(){
+      dataLoaded() {
         this.$store.commit('activeChartData', this.$route.params.name)
         this.drawSankeyChart();
-        
+  
       }
     },
     computed: {
@@ -47,18 +49,18 @@
     },
     methods: {
       drawSankeyChart() {
-        
+  
         this.loading = true;
   
         const self = this;
-
-        google.setOnLoadCallback(drawChart);
-
+  
+        //google.setOnLoadCallback(drawChart);
+        drawChart()
         console.log("lets go")
   
         function drawChart() {
           console.log("drawwwwwwwwwwww me opa")
-          
+  
           let data = new google.visualization.DataTable();
   
           data.addColumn("string", "From");
@@ -70,10 +72,18 @@
           // Sets chart options.
           let options = {
             width: 1200,
+            height: 1500,
             sankey: {
               node: {
                 interactivity: true,
-                width: 10
+                width: 20,
+                labelPadding: 20,
+                nodePadding: 50,
+                label: {
+                  fontSize: 20,
+                  bold: true,
+                }
+  
               }
             }
           };
@@ -84,11 +94,12 @@
           );
   
           chart.draw(data, options);
-
+  
           window.google.visualization.events.addListener(chart, "select", () => {
             let sel = chart.getSelection();
   
             if (sel.length) {
+              self.viewButton = true;
               self.$store.commit("getSelectedNode", sel[0].name);
               chart.clearChart();
               drawChart();
@@ -96,14 +107,21 @@
           });
         }
       }
-    }
-    ,
-  created() {
+    },
+    created() {
       this.$store.dispatch("initChart");
-  }
+    }
   };
 </script>
 
 <style scoped>
-  
+  .btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    float: left;
+  }
+  svg{
+    padding-top: 50px !important;
+  }
 </style>
