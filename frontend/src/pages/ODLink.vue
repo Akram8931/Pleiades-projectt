@@ -67,17 +67,13 @@ export default {
 </script>
 
 <style scoped>
-.tabBtn {
-  background-color: #848b90;
-  color: white;
-  padding: 4px;
-  border: 1px solid #80808091;
+.tabBtn{
+      background-color: #848b90;
+    color: white;
+    padding: 4px;
+    border: 1px solid #80808091;
 }
-.tabBtn .router-link-exact-active.activeLink {
-  color: black;
-}
-path {
-  stroke-width: 3 !important;
-  stroke: #555;
+.tabBtn .router-link-exact-active.activeLink{
+        color: black;
 }
 </style>

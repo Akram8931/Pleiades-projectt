@@ -8,7 +8,6 @@ import App from './App';
 import router from './router';
 import store from './store/store';
 
-
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/bootstrap-vue/dist/bootstrap-vue.css';
 
