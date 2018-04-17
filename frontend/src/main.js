@@ -15,6 +15,7 @@ import '../node_modules/bootstrap-vue/dist/bootstrap-vue.css';
 import './assets/css/animate.css';
 import './assets/css/grid.css';
 import './assets/css/style.css';
+import './assets/css/stateface.css';
 
 
 Vue.use(VueCharts);

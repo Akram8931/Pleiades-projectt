@@ -2,19 +2,22 @@
 <div>
 <div id="visualization" style="margin: 1em"> </div>
   <div>
-      <b-modal v-model="$store.state.modalShow" title="State Pie Chart">
+      <b-modal v-model="$store.state.modalShow" :title="$store.state.stateName">
       <div class="d-block text-center">
+        <div class="col-xs-12 text-center" style="height:200px">
+
+<span class="stateface stateface-replace" :class="'stateface-' + $store.state.statePrev">{{$store.state.statePrev}}</span>
+        </div>
       <div class="col-xs-4">
-        <vue-chart chart-type="PieChart" :columns="$store.state.PieColumns" :rows="$store.state.PieGenderRows" :options="$store.state.PieGenderOptions"></vue-chart>
+        <vue-chart chart-type="PieChart" :columns="PieGenderColumns" :rows="$store.state.PieGenderRows" :options="PieGenderOptions"></vue-chart>
       </div>
         <div class="col-xs-4">
-<vue-chart chart-type="PieChart" :columns="$store.state.PieColumns" :rows="$store.state.PieAgeRows" :options="$store.state.PieAgeOptions"></vue-chart>
+<vue-chart chart-type="PieChart" :columns="PieAgeColumns" :rows="$store.state.PieAgeRows" :options="PieAgeOptions"></vue-chart>
       </div>
 <div class="col-xs-4">
-<vue-chart chart-type="PieChart" :columns="$store.state.PieColumns" :rows="$store.state.PieRaceRows" :options="$store.state.PieRaceOptions"></vue-chart>
+<vue-chart chart-type="PieChart" :columns="PieRaceColumns" :rows="$store.state.PieRaceRows" :options="PieRaceOptions"></vue-chart>
       </div>
       </div>
-      <b-btn class="mt-3" variant="outline-danger" block>Close Me</b-btn>
     </b-modal>
   </div>
 
@@ -26,18 +29,134 @@ export default {
   name: 'Demographic',
   data() {
     return {
+      PieGenderOptions: {
+        title: 'GENDER',
+        width: 600,
+        height: 500,
+        curveType: 'function',
+        is3D: true,
+        legend: 'none',
+        slices: {
+          0: { color: '#0c586f' },
+          1: { color: 'black' },
+          2: { color: '#a7b0b7' },
+          3: { color: 'orange' },
+        },
+        backgroundColor: 'none',
+      },
+      PieAgeOptions: {
+        title: 'Age',
+        width: 600,
+        height: 500,
+        curveType: 'function',
+        is3D: true,
+        legend: 'none',
+        slices: {
+          0: { color: '#0c586f' },
+          1: { color: 'black' },
+          2: { color: '#a7b0b7' },
+          3: { color: 'orange' },
+        },
+        backgroundColor: 'none',
+      },
+      PieRaceOptions: {
+        title: 'Race',
+        width: 600,
+        height: 500,
+        curveType: 'function',
+        is3D: true,
+        legend: 'none',
+        slices: {
+          0: { color: '#0c586f' },
+          1: { color: 'black' },
+          2: { color: '#a7b0b7' },
+          3: { color: 'orange' },
+        },
+        backgroundColor: 'none',
+      },
+      PieGenderColumns: [
+        {
+          type: 'string',
+          label: 'Gender',
+        },
+        {
+          type: 'number',
+          label: 'Percentage',
+        },
+      ],
+      PieAgeColumns: [
+        {
+          type: 'number',
+          label: 'Age',
+        },
+        {
+          type: 'number',
+          label: 'Percentage',
+        },
+      ],
+      PieRaceColumns: [
+        {
+          type: 'string',
+          label: 'Gender',
+        },
+        {
+          type: 'number',
+          label: 'Percentage',
+        },
+      ],
     };
+  },
+  computed: {
+    ListOfStates() {
+      return this.$store.state.USStates;
+    },
+  },
+  watch: {
+    ListOfStates() {
+      this.drawVisualization();
+    },
   },
   created() {
     this.$store.dispatch('loadUSAMap');
   },
-    methods: {
+  methods: {
+    drawVisualization() {
+      const self = this;
+        const data = window.google.visualization.arrayToDataTable(
+          self.$store.state.USStates,
+        );
+        const opts = {
+          title: 'Popularity by Countries',
+          width: '100%',
+          height: 500,
+          region: 'US',
+          displayMode: 'regions',
+          colorAxis: { colors: ['#0c586f', 'black', '#a7b0b7'] },
+          backgroundColor: 'none',
+          datalessRegionColor: 'white',
+          defaultColor: 'white',
+          resolution: 'provinces',
+        };
+        const geochart = new window.google.visualization.GeoChart(
+          document.getElementById('visualization'),
+        );
+        geochart.draw(data, opts);
 
-  }
-
+        window.google.visualization.events.addListener(
+          geochart,
+          'select',
+          () => {
+            const newStateName = self.$store.state.USStates[geochart.getSelection()[0].row + 1][0];
+            self.$store.commit('changeStateName', newStateName);
+            self.$store.dispatch('loadPieChart', newStateName);
+          },
+        );
+    },
+  },
 };
 </script>
 
 <style scoped>
+
 </style>
 
