@@ -23,8 +23,10 @@ body {
   color: #8f8f8f;
 }
 #visualization path {
-  stroke-width: 3 !important;
+  stroke-width: 1 !important;
+  stroke: #615151 !important;
 }
+
 @media (min-width: 768px) {
   body {
     font-size: 18px;
@@ -2414,6 +2416,7 @@ header {
 .modal-footer .btn-primary{
   background-color: #0e586f;
     border-color: #0e586f;
+    width: 8%;
 }
 .modal-footer .btn-secondary{
   display: none;
@@ -2522,7 +2525,7 @@ footer .copyright {
 
 @media (min-width: 576px){
 .modal-dialog {
-    max-width: 80%;
+    max-width: 97%;
     margin: 1.75rem auto;
 }
 }
