@@ -10,7 +10,7 @@ const store = new Vuex.Store({
     crossOrgChartData: [],
     activeChartData: [],
     selectedNode: [],
-    
+
   },
   mutations: {
     setFunctionalChartData(state, payload) {
@@ -23,51 +23,36 @@ const store = new Vuex.Store({
 
     getSelectedNode(state, selectedNodeName) {
       state.selectedNode = _.filter(state.activeChartData, (o) => {
-
         if (o.indexOf(selectedNodeName) > -1) {
           return o;
         }
-
       });
     },
 
     activeChartData(state, payload) {
-
       if (payload === 'functional') {
         state.activeChartData = state.functionalChartData;
       } else if (payload === 'cross-org') {
         state.activeChartData = state.crossOrgChartData;
       }
-
       state.selectedNode = state.activeChartData;
-      console.log("i fill it")
     },
-    
-    reDrawMainChart(state){
-      console.log("he click me")
+    reDrawMainChart(state) {
       state.selectedNode = state.activeChartData;
-    }
+    },
   },
   actions: {
     initChart({ commit }) {
       axios.get('http://red-alphar.com/functional_capability')
         .then((response) => {
           commit('setFunctionalChartData', response.data);
-
-        })
-        .catch((error) => {
-          console.log(error);
         });
+
 
       axios.get('http://red-alphar.com/cross_org_capability')
         .then((response) => {
           commit('setCrossOrgChartData', response.data);
-
-        })
-        .catch((error) => {
-          console.log(error);
         });
-
     },
   },
 });
