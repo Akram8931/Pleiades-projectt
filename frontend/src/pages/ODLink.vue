@@ -26,29 +26,28 @@
                     </div>
                     <main>
 
-                   
-                         
-                        <div class="main-wrap"  style="margin-top:9%">
-                             <div class="container"> 
-                                <div class="col-xs-3"> 
-        
-                                </div> 
-                                <div class="col-xs-6"> 
-                                    <div class="col-xs-4 tabBtn" > 
+
+                        <div class="main-wrap"  style="min-height:900px ;padding-top:9%">
+                             <div class="container">
+                                <div class="col-xs-3">
+
+                                </div>
+                                <div class="col-xs-6" style="margin-bottom:40px">
+                                    <div class="col-xs-4 tabBtn" >
                                     <router-link to="/ODLink/ODlinks"> Demographic</router-link>
                                     </div>
-                                    <div class="col-xs-4 tabBtn" > 
-                                    <router-link to="/ODLink/ODlinks/functional"> Functional Capability </router-link>
+                                    <div class="col-xs-4 tabBtn" >
+                                    <router-link to="/ODLink/ODlinks/Functional"> Functional Capability </router-link>
                                     </div>
-                                    <div class="col-xs-4 tabBtn"> 
-                                    <router-link to="/ODLink/ODlinks/cross-org"> Cross Org Capability</router-link>
+                                    <div class="col-xs-4 tabBtn">
+                                    <router-link to="/ODLink/ODlinks/CrossOrg"> Cross Org Capability</router-link>
                                     </div>
                                 </div>
                              </div>
                             <router-view/>
                         </div>
                     </main>
-    
+
                 </div>
             </header>
         </div>
@@ -56,12 +55,12 @@
 </template>
 
 <script>
-    export default {
-        name: 'ODLink',
-        data() {
-            return {};
-        },
-    };
+export default {
+  name: 'ODLink',
+  data() {
+    return {};
+  },
+};
 </script>
 
 <style scoped>
