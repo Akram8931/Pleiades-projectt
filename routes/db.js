@@ -39,6 +39,19 @@ module.exports.getCrossOrgCapability = function(req, res, next) {
 	});
 };
 
+var ageStringKey = function(age) {
+	if(age <= 20 )
+		return "<20"
+	if(age > 20 && age <= 30 )
+		return "21-30"
+	if(age > 30 && age <= 40 )
+		return "31-40"
+	if(age > 40 && age <= 50 )
+		return "41-50"
+	if(age > 50 )
+		return "50+"
+}
+
 module.exports.getRaceGenderAge = function(req, res, next) {
 	var data = {race: [], gender: [], age: []};
 	connection.query("SELECT race, count(race) AS race_count FROM presence.od where state_resides_in = '" + req.params['state'] + "' GROUP BY race", function (err, result, fields) {
@@ -54,7 +67,7 @@ module.exports.getRaceGenderAge = function(req, res, next) {
 			connection.query("SELECT age, count(age) AS age_count FROM presence.od where state_resides_in = '" + req.params['state'] + "' GROUP BY age", function (err, result, fields) {
 				if (err) throw err;
 				for (var i = 0; i < result.length; i++) {
-					data.age.push([result[i].age, result[i].age_count])
+					data.age.push([ageStringKey(result[i].age), result[i].age_count])
 				}
 				res.send(data);
 			});
