@@ -21,6 +21,7 @@ import './assets/css/stateface.css';
 Vue.use(VueCharts);
 Vue.use(BootstrapVue);
 
+
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
