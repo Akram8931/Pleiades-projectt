@@ -17,7 +17,7 @@
 <div class="col-xs-4">
 <vue-chart chart-type="PieChart" :columns="PieRaceColumns" :rows="$store.state.PieRaceRows" :options="PieRaceOptions"></vue-chart>
       </div>
-     
+
       </div>
     </b-modal>
   </div>
@@ -37,6 +37,7 @@ export default {
         curveType: 'function',
         is3D: true,
         legend: 'none',
+        pieSliceText: 'none',
         chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         slices: {
           0: { color: '#0c586f' },
@@ -53,6 +54,7 @@ export default {
         curveType: 'function',
         is3D: true,
         legend: 'none',
+        pieSliceText: 'none',
         chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         slices: {
           0: { color: '#0c586f' },
@@ -70,6 +72,7 @@ export default {
         chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         is3D: true,
         legend: 'none',
+        pieSliceText: 'none',
         slices: {
           0: { color: '#0c586f' },
           1: { color: 'black' },
@@ -121,47 +124,23 @@ export default {
     },
   },
   created() {
+    debugger;
     this.$store.dispatch('loadUSAMap');
   },
   methods: {
     drawVisualization() {
       const self = this;
 
-      window.google.charts.load('current', { packages: ['geochart'] });
-      window.google.charts.setOnLoadCallback(() => drawChart());
-
-      function drawChart() {
-        const data = window.google.visualization.arrayToDataTable(
-          self.ListOfStates,
-        );
-  
-        const opts = {
-          title: 'Popularity by Countries',
-          width: '100%',
-          height: 500,
-          region: 'US',
-          displayMode: 'regions',
-          colorAxis: { colors: ['#0c586f', 'black', '#a7b0b7'] },
-          backgroundColor: 'none',
-          datalessRegionColor: 'white',
-          defaultColor: 'white',
-          resolution: 'provinces',
-        };
-        const geochart = new window.google.visualization.GeoChart(
-          document.getElementById('visualization'),
-        );
-        geochart.draw(data, opts);
-  
-        window.google.visualization.events.addListener(
-          geochart,
-          'select',
-          () => {
-            const newStateName = self.$store.state.USStates[geochart.getSelection()[0].row + 1][0];
-            self.$store.commit('changeStateName', newStateName);
-            self.$store.dispatch('loadPieChart', newStateName);
-          },
-        );
-      }
+      window.google.visualization.events.addListener(
+        geochart,
+        'select',
+        () => {
+          const newStateName = self.$store.state.USStates[geochart.getSelection()[0].row + 1][0];
+          self.$store.commit('changeStateName', newStateName);
+          self.$store.dispatch('loadPieChart', newStateName);
+        },
+      );
+    // }
     },
   },
 };

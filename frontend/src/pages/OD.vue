@@ -47,7 +47,7 @@
                                     <div class="image-wrap-2">
                                         <div class="image-wrap-3">
                                             <div class="thumbnail">
-                                                <router-link to="/ODLink/ODlinks" class="thumb" data-fancybox-group='1'>
+                                                <router-link to="/ODLink/Demographic" class="thumb" data-fancybox-group='1'>
                                                     <img src="../assets/images/bigstock-Abstract-blue-background-Tech-97762865.jpg" alt="">
 
                                                 </router-link>
@@ -67,13 +67,13 @@
                                     <div class="image-wrap-3">
                                         <div class="image-wrap-2">
                                             <div class="thumbnail">
-                                                <a href="" class="thumb" data-fancybox-group='1'>
+                                                <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                     <img src="../assets/images/bigstock--127460828.jpg" alt="">
                                                 </a>
 
                                                 <div class="thumbnail_overlay thumbnail_overlay--skin">
                                                     <div class="caption caption--mod">
-                                                        <a href="#" class="small">Price
+                                                        <a href="javascript:function() { return false; }" class="small">Price
                                                             <br> Law</a>
                                                     </div>
                                                 </div>
@@ -85,13 +85,13 @@
                                     <div class="image-wrap-2">
                                         <div class="image-wrap-3">
                                             <div class="thumbnail">
-                                                <a href="" class="thumb" data-fancybox-group='1'>
+                                                <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                     <img src="../assets/images/bigstock-best-concept-of-global-busines-15987380.jpg" alt="">
                                                 </a>
 
                                                 <div class="thumbnail_overlay">
                                                     <div class="caption">
-                                                        <a href="#" class="small">Capability
+                                                        <a href="javascript:function() { return false; }" class="small">Capability
                                                             <br> Visualization</a>
                                                     </div>
                                                 </div>
@@ -108,13 +108,13 @@
                                         <div class="image-wrap-3">
                                             <div class="image-wrap-2">
                                                 <div class="thumbnail">
-                                                    <a href="" class="thumb" data-fancybox-group='1'>
+                                                    <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                         <img src="../assets/images/bigstock-Color-light-traces-over-black--100445951.jpg" alt="">
                                                     </a>
 
                                                     <div class="thumbnail_overlay thumbnail_overlay--skin">
                                                         <div class="caption caption--mod">
-                                                            <a href="#" class="small">Alignment to
+                                                            <a href="javascript:function() { return false; }" class="small">Alignment to
                                                                 <br> Efforts</a>
                                                         </div>
                                                     </div>
@@ -126,13 +126,13 @@
                                         <div class="image-wrap-2">
                                             <div class="image-wrap-3">
                                                 <div class="thumbnail">
-                                                    <a href="" class="thumb" data-fancybox-group='1'>
+                                                    <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                         <img src="../assets/images/Pleiades Cluster 2.jpg" alt="">
                                                     </a>
 
                                                     <div class="thumbnail_overlay">
                                                         <div class="caption">
-                                                            <a href="#" class="small"> Turnover
+                                                            <a href="javascript:function() { return false; }" class="small"> Turnover
                                                                 <br> Predictions</a>
                                                         </div>
                                                     </div>
@@ -144,13 +144,13 @@
                                         <div class="image-wrap-3">
                                             <div class="image-wrap-2">
                                                 <div class="thumbnail">
-                                                    <a href="" class="thumb" data-fancybox-group='1'>
+                                                    <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                         <img src="../assets/images/World-Map.jpg" alt="">
                                                     </a>
 
                                                     <div class="thumbnail_overlay thumbnail_overlay--skin">
                                                         <div class="caption caption--mod">
-                                                            <a href="#" class="small">Genetic
+                                                            <a href="javascript:function() { return false; }" class="small">Genetic
                                                                 <br> Algorithm</a>
                                                         </div>
                                                     </div>

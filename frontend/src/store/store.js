@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 
+
 Vue.use(Vuex);
 
 const state = {
@@ -29,6 +30,10 @@ const state = {
   statePrev: '',
   functionalChartData: [],
   crossOrgChartData: [],
+  isExpired: true,
+  expiryDate: localStorage.getItem('expiry-date') || '',
+  status: '',
+  token: localStorage.getItem('user-token') || '',
 };
 const getters = {};
 const mutations = {
@@ -64,11 +69,29 @@ const mutations = {
   setCrossOrgChartData(state, payload) {
     state.crossOrgChartData = payload;
   },
+  // Login methods
+  AUTH_REQUEST(state) {
+    state.status = 'loading';
+  },
+  AUTH_SUCCESS(state, payload) {
+    state.status = 'success';
+    state.token = payload.token;
+    state.expiryDate = payload.expiryDate;
+  },
+  AUTH_ERROR(state) {
+    state.status = 'error';
+  },
+  checkExpiryDate(state, ExpiryDate) {
+    const currentDate = Date.now();
+    if (currentDate < ExpiryDate) {
+      state.isExpired = false;
+    }
+  },
 };
 const actions = {
   // api of US Map
   loadUSAMap(context) {
-    axios.get('http://red-alphar.com/us_map').then((Response) => {
+    axios.get('http://192.168.1.131:3000/us_map').then((Response) => {
       context.commit('SetUSMapData', Response.data);
     });
   },
@@ -97,7 +120,28 @@ const actions = {
         commit('setFunctionalChartData', response.data);
       });
   },
+  // Login Api
+  AUTH_REQUEST({ commit }, user) {
+    const NPromise = new Promise((resolve, reject) => {
+      commit('AUTH_REQUEST');
+      axios({ url: 'auth', data: user, method: 'POST' })
+        .then((resp) => {
+          const token = resp.data.token;
+          const expiryDate = resp.data.expiryDate;
 
+          localStorage.setItem('user-token', token); // store the token in localstorage
+          localStorage.setItem('expiry-date', expiryDate); // store the expiry date in localstorage
+          commit('AUTH_SUCCESS', { token, expiryDate });
+          resolve(resp);
+        }).catch((err) => {
+          commit('AUTH_ERROR', err);
+          localStorage.removeItem('user-token'); // if the request fails, remove any possible user token if possible
+          localStorage.removeItem('expiry-date'); // if the request fails, remove any possible user expiry date if possible
+
+          reject(err);
+        });
+    });
+  },
 };
 
 const store = new Vuex.Store({

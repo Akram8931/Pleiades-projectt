@@ -96,13 +96,13 @@
                                         <!-- <a href="/OD" class="thumb" data-fancybox-group='1'>
 
                                         </a> -->
-                                        <router-link to="/OD" class="thumb" data-fancybox-group='1'>
+                                        <router-link to="/OD"  class="thumb" data-fancybox-group='1'>
                                             <img src="../assets/images/World-Map.jpg" alt="">
                                         </router-link>
 
                                         <div class="thumbnail_overlay">
                                             <div class="caption">
-                                                <a href="#" class="small">OD</a>
+                                                <a href="" class="small">OD</a>
                                             </div>
                                         </div>
                                     </div>
@@ -113,7 +113,7 @@
                             <div class="image-wrap-3">
                                 <div class="image-wrap-2">
                                     <div class="thumbnail">
-                                        <a href="images/page-1_img03_original.jpg" class="thumb" data-fancybox-group='1'>
+                                        <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                             <img src="../assets/images/Pleiades Cluster 2.jpg" alt="">
                                         </a>
 
@@ -130,7 +130,7 @@
                             <div class="image-wrap-2">
                                 <div class="image-wrap-3">
                                     <div class="thumbnail">
-                                        <a href="images/page-1_img04_original.jpg" class="thumb" data-fancybox-group='1'>
+                                        <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                             <img src="../assets/images/Personality Traits.png" alt="">
                                         </a>
 
@@ -147,7 +147,7 @@
                             <div class="image-wrap-3">
                                 <div class="image-wrap-2">
                                     <div class="thumbnail">
-                                        <a href="images/page-1_img05_original.jpg" class="thumb" data-fancybox-group='1'>
+                                        <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                             <img src="../assets/images/Pleiades.jpg" alt="">
                                         </a>
                                     </div>
@@ -158,7 +158,7 @@
                             <div class="image-wrap-2">
                                 <div class="image-wrap-3">
                                     <div class="thumbnail">
-                                        <a href="images/page-1_img06_original.jpg" class="thumb" data-fancybox-group='1'>
+                                        <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                             <img src="../assets/images/bigstock-Color-light-traces-over-black--100445951.jpg" alt="">
                                         </a>
 
@@ -175,7 +175,7 @@
                             <div class="image-wrap-3">
                                 <div class="image-wrap-2">
                                     <div class="thumbnail">
-                                        <a href="images/page-1_img07_original.jpg" class="thumb" data-fancybox-group='1'>
+                                        <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                             <img src="../assets/images/bigstock-best-concept-of-global-busines-15987380.jpg" alt="">
                                         </a>
 
@@ -192,7 +192,7 @@
                             <div class="image-wrap-2">
                                 <div class="image-wrap-3">
                                     <div class="thumbnail">
-                                        <a href="images/page-1_img08_original.jpg" class="thumb" data-fancybox-group='1'>
+                                        <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                             <img src="../assets/images/bigstock-Abstract-low-poly-blue-bright--99207965.jpg" alt="">
                                         </a>
 
@@ -210,7 +210,7 @@
                                 <div class="image-wrap-3">
                                     <div class="image-wrap-2">
                                         <div class="thumbnail">
-                                            <a href="images/page-1_img09_original.jpg" class="thumb" data-fancybox-group='1'>
+                                            <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                 <img src="../assets/images/Pleiades.jpg" alt="">
                                             </a>
                                         </div>
@@ -221,7 +221,7 @@
                                 <div class="image-wrap-2">
                                     <div class="image-wrap-3">
                                         <div class="thumbnail">
-                                            <a href="images/page-1_img10_original.jpg" class="thumb" data-fancybox-group='1'>
+                                            <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                 <img src="../assets/images/Pleiades.jpg" alt="">
                                             </a>
                                         </div>
@@ -232,7 +232,7 @@
                                 <div class="image-wrap-3">
                                     <div class="image-wrap-2">
                                         <div class="thumbnail">
-                                            <a href="images/page-1_img11_original.jpg" class="thumb" data-fancybox-group='1'>
+                                            <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                 <img src="../assets/images/Pleiades.jpg" alt="">
                                             </a>
                                         </div>
@@ -243,7 +243,7 @@
                                 <div class="image-wrap-2">
                                     <div class="image-wrap-3">
                                         <div class="thumbnail">
-                                            <a href="images/page-1_img12_original.jpg" class="thumb" data-fancybox-group='1'>
+                                            <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                 <img src="../assets/images/bigstock-Abstract-blue-background-Tech-97762865.jpg" alt="">
                                             </a>
 
@@ -261,7 +261,7 @@
                                 <div class="image-wrap-3">
                                     <div class="image-wrap-2">
                                         <div class="thumbnail">
-                                            <a href="images/page-1_img13_original.jpg" class="thumb" data-fancybox-group='1'>
+                                            <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                 <img src="../assets/images/Pleiades.jpg" alt="">
                                             </a>
 
@@ -273,7 +273,7 @@
                                 <div class="image-wrap-2">
                                     <div class="image-wrap-3">
                                         <div class="thumbnail">
-                                            <a href="images/page-1_img14_original.jpg" class="thumb" data-fancybox-group='1'>
+                                            <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                 <img src="../assets/images/Pleiades.jpg" alt="">
                                             </a>
                                         </div>
@@ -284,7 +284,7 @@
                                 <div class="image-wrap-3">
                                     <div class="image-wrap-2">
                                         <div class="thumbnail">
-                                            <a href="images/page-1_img15_original.jpg" class="thumb" data-fancybox-group='1'>
+                                            <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                 <img src="../assets/images/Pleiades.jpg" alt="">
                                             </a>
                                         </div>

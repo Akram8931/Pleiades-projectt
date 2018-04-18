@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+
+import store from '@/store/store';
+
 import Login from '@/pages/login';
 import Home from '@/pages/Home';
 import OD from '@/pages/OD';
@@ -11,14 +14,13 @@ import Demographic from '@/components/Demographic';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
       name: 'Login',
       component: Login,
     },
-
     {
       path: '/Home',
       name: 'Home',
@@ -42,3 +44,16 @@ export default new Router({
   ],
   linkActiveClass: 'activeLink',
 });
+
+
+router.beforeEach((to, from, next) => {
+  const isAuthorized = store.state.token !== '' && !store.state.isExpired;
+  if (to.name === 'Login' || isAuthorized) {
+    next();
+  } else {
+    next({ name: 'Login' });
+  }
+});
+
+
+export default router;

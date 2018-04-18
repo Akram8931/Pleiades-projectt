@@ -25,8 +25,6 @@
                         </div>
                     </div>
                     <main>
-
-
                         <div class="main-wrap"  style="min-height:900px ;padding-top:9%">
                              <div class="container">
                                 <div class="col-xs-3">
