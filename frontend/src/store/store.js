@@ -90,7 +90,7 @@ const mutations = {
 const actions = {
   // api of US Map
   loadUSAMap(context) {
-    axios.get('http://red-alphar.com/us_map').then((Response) => {
+    axios.get('http://192.168.1.131:3000/us_map').then((Response) => {
       context.commit('SetUSMapData', Response.data);
     });
   },
@@ -108,13 +108,13 @@ const actions = {
       });
   },
   initChart({ commit }) {
-    axios.get('http://red-alphar.com/functional_capability')
+    axios.get('http://192.168.1.131:3000/functional_capability')
       .then((response) => {
         commit('setFunctionalChartData', response.data);
       });
 
 
-    axios.get('http://red-alphar.com/cross_org_capability')
+    axios.get('http://192.168.1.131:3000/cross_org_capability')
       .then((response) => {
         commit('setCrossOrgChartData', response.data);
       });
