@@ -13,8 +13,8 @@ export default {
     ChartSankey,
   },
   created() {
-      this.$store.dispatch("initChart");
-  }
+    this.$store.dispatch('initChart');
+  },
 };
 </script>
 

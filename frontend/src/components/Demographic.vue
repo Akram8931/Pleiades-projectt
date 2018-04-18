@@ -17,7 +17,7 @@
 <div class="col-xs-4">
 <vue-chart chart-type="PieChart" :columns="PieRaceColumns" :rows="$store.state.PieRaceRows" :options="PieRaceOptions"></vue-chart>
       </div>
-     
+
       </div>
     </b-modal>
   </div>
@@ -37,6 +37,7 @@ export default {
         curveType: 'function',
         is3D: true,
         legend: 'none',
+        pieSliceText: 'none',
         chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         slices: {
           0: { color: '#0c586f' },
@@ -53,6 +54,7 @@ export default {
         curveType: 'function',
         is3D: true,
         legend: 'none',
+        pieSliceText: 'none',
         chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         slices: {
           0: { color: '#0c586f' },
@@ -70,6 +72,7 @@ export default {
         chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         is3D: true,
         legend: 'none',
+        pieSliceText: 'none',
         slices: {
           0: { color: '#0c586f' },
           1: { color: 'black' },
@@ -121,6 +124,7 @@ export default {
     },
   },
   created() {
+    debugger;
     this.$store.dispatch('loadUSAMap');
   },
   methods: {
@@ -155,6 +159,7 @@ export default {
           self.$store.dispatch('loadPieChart', newStateName);
         },
       );
+    // }
     },
   },
 };
