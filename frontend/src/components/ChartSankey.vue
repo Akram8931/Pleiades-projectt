@@ -60,9 +60,9 @@
   
           let data = new google.visualization.DataTable();
   
-          data.addColumn("string", "From");
+          data.addColumn("string", "Home location");
           data.addColumn("string", "To");
-          data.addColumn("number", "Weight");
+          data.addColumn("number", "No of Employess");
   
           data.addRows(self.$store.state.selectedNode);
   
