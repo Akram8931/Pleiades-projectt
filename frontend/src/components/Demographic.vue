@@ -126,35 +126,42 @@ export default {
   methods: {
     drawVisualization() {
       const self = this;
-      const data = window.google.visualization.arrayToDataTable(
-        self.$store.state.USStates,
-      );
-      const opts = {
-        title: 'Popularity by Countries',
-        width: '100%',
-        height: 500,
-        region: 'US',
-        displayMode: 'regions',
-        colorAxis: { colors: ['#0c586f', 'black', '#a7b0b7'] },
-        backgroundColor: 'none',
-        datalessRegionColor: 'white',
-        defaultColor: 'white',
-        resolution: 'provinces',
-      };
-      const geochart = new window.google.visualization.GeoChart(
-        document.getElementById('visualization'),
-      );
-      geochart.draw(data, opts);
 
-      window.google.visualization.events.addListener(
-        geochart,
-        'select',
-        () => {
-          const newStateName = self.$store.state.USStates[geochart.getSelection()[0].row + 1][0];
-          self.$store.commit('changeStateName', newStateName);
-          self.$store.dispatch('loadPieChart', newStateName);
-        },
-      );
+      window.google.charts.load('current', { packages: ['geochart'] });
+      window.google.charts.setOnLoadCallback(() => drawChart());
+
+      function drawChart() {
+        const data = window.google.visualization.arrayToDataTable(
+          self.ListOfStates,
+        );
+  
+        const opts = {
+          title: 'Popularity by Countries',
+          width: '100%',
+          height: 500,
+          region: 'US',
+          displayMode: 'regions',
+          colorAxis: { colors: ['#0c586f', 'black', '#a7b0b7'] },
+          backgroundColor: 'none',
+          datalessRegionColor: 'white',
+          defaultColor: 'white',
+          resolution: 'provinces',
+        };
+        const geochart = new window.google.visualization.GeoChart(
+          document.getElementById('visualization'),
+        );
+        geochart.draw(data, opts);
+  
+        window.google.visualization.events.addListener(
+          geochart,
+          'select',
+          () => {
+            const newStateName = self.$store.state.USStates[geochart.getSelection()[0].row + 1][0];
+            self.$store.commit('changeStateName', newStateName);
+            self.$store.dispatch('loadPieChart', newStateName);
+          },
+        );
+      }
     },
   },
 };

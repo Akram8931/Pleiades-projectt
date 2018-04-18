@@ -3,9 +3,11 @@ import Router from 'vue-router';
 import Login from '@/pages/login';
 import Home from '@/pages/Home';
 import OD from '@/pages/OD';
+import CrossOrg from '@/pages/CrossOrg';
+import Functional from '@/pages/Functional';
+
 import ODLink from '@/pages/ODLink';
 import Demographic from '@/components/Demographic';
-import ChartSankey from '@/components/ChartSankey';
 
 Vue.use(Router);
 
@@ -16,11 +18,7 @@ export default new Router({
       name: 'Login',
       component: Login,
     },
-    // {
-    //   path: '/',
-    //   name: 'ChartSankey',
-    //   component: ChartSankey,
-    // },
+
     {
       path: '/Home',
       name: 'Home',
@@ -37,7 +35,8 @@ export default new Router({
       component: ODLink,
       children: [
         { path: '', component: Demographic },
-        { path: ':name', component: ChartSankey },
+        { path: 'CrossOrg', component: CrossOrg },
+        { path: 'Functional', component: Functional },
       ],
     },
   ],

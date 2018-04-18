@@ -1,48 +1,30 @@
 <template>
   <div class="sankey-chart">
     <div class="container">
-  
-      <div class="loading" v-if="!loading">
-        Loading...
-      </div>
-  
-      <div v-else>
-        <button v-if="viewButton" class="btn btn-primary" @click.prevent="reDrawMainChart">Back</button>
-        <div id="sankey_basic"></div>
-      </div>
-  
+      <button v-if="viewButton" class="btn btn-main" @click.prevent="reDrawMainChart">Back</button>
+      <div id="sankey_basic"></div>  
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: "ChartSankey",
-    props: ["dataChart"],
+    name: 'ChartSankey',
+    props: ['dataChart'],
     data() {
       return {
-        loading: false,
-        viewButton: false
-      }
+        viewButton: false,
+        selectedData: []
+      };
     },
     watch: {
-      '$route' (to, from) {
-        this.$store.commit('activeChartData', to.params.name)
+      $route(to, from) {
+        this.selectedData = this.dataChart
+        this.viewButton = false;          
         this.drawSankeyChart();
-  
       },
-      dataLoaded() {
-        this.$store.commit('activeChartData', this.$route.params.name)
+      selectedData(){
         this.drawSankeyChart();
-  
-      }
-    },
-    computed: {
-      changeData() {
-        return this.$store.state.selectedNode;
-      },
-      dataLoaded() {
-        return this.$store.state.functionalChartData;
       }
     },
     methods: {
@@ -51,23 +33,26 @@
         this.loading = true;
   
         const self = this;
+        window.google.charts.load('current', {
+          packages: ['sankey']
+        });
+        window.google.charts.setOnLoadCallback(() => drawChart());
   
-        // google.setOnLoadCallback(drawChart);
-
-        drawChart()
+        // drawChart()
   
         function drawChart() {
   
-          let data = new google.visualization.DataTable();
+          const data = new window.google.visualization.DataTable();
   
-          data.addColumn("string", "Home location");
-          data.addColumn("string", "To");
-          data.addColumn("number", "No of Employess");
+          data.addColumn('string', 'Home location');
+          data.addColumn('string', 'To');
+          data.addColumn('number', 'No of Employess');
   
-          data.addRows(self.$store.state.selectedNode);
+          data.addRows(self.selectedData);
+  
   
           // Sets chart options.
-          let options = {
+          const options = {
             width: 1200,
             height: 1500,
             sankey: {
@@ -79,57 +64,77 @@
                 label: {
                   fontSize: 20,
                   bold: true,
-                }
+                  color: '#fff',
+                },
   
-              }
-            }
+              },
+            },
           };
   
           // Instantiates and draws our chart, passing in some options.
-          let chart = new google.visualization.Sankey(
-            document.getElementById("sankey_basic")
+          const chart = new window.google.visualization.Sankey(
+            document.getElementById('sankey_basic'),
           );
   
           chart.draw(data, options);
   
-          window.google.visualization.events.addListener(chart, "select", () => {
-            let sel = chart.getSelection();
+          window.google.visualization.events.addListener(chart, 'select', () => {
+                const sel = chart.getSelection();
   
-            if (sel.length) {
-              self.viewButton = true;
-              self.$store.commit("getSelectedNode", sel[0].name);
-              chart.clearChart();
-              drawChart();
-            }
+                if (sel.length) {
+                  self.viewButton = true;
+
+                  self.selectedData = _.filter(self.dataChart, (o) => {
+                      if (o.indexOf(sel[0].name) > -1) {
+                        return o;
+                      }
+                  });
+                      
+                  chart.clearChart();
+                  drawChart();
+                      
+                }
           });
         }
       },
-      reDrawMainChart(){
+      reDrawMainChart() {
         this.viewButton = false;
-        console.log("click")
-        this.$store.commit('reDrawMainChart');
+        this.selectedData = this.dataChart
         this.drawSankeyChart();
       },
-    },
-    created() {
-      this.$store.dispatch("initChart");
-      this.drawSankeyChart();
-    }
-  };
+      },
+      mounted(){
+        this.selectedData = this.dataChart
+      },
+      created() {
+        this.selectedData = this.dataChart
+        this.drawSankeyChart();
+      },
+      updated(){
+        this.drawSankeyChart();
+      }
+      };
 </script>
 
 <style scoped>
-.sankey-chart{
-  text-align: left;
-}
-  .btn-primary {
-    color: #007bff;
+  .sankey-chart {
+    text-align: left;
+  }
+  
+  .btn-main {
+    color: #468b9a;
     background-color: #fff;
     border-color: #fff;
     border-radius: 5px;
     display: inline-block;
     padding: 6px 12px;
     margin-bottom: 30px;
+  }
+  
+  .btn-main:hover {
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
   }
   
   svg {
