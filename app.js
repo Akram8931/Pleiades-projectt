@@ -20,10 +20,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/login', loginRouter);
-app.use('/users', usersRouter);
-app.use('/users', usersRouter);
+// app.use('/', indexRouter);
+// app.use('/login', loginRouter);
+// app.use('/users', usersRouter);
 app.get('/us_map', db.getUsMap);
 app.get('/functional_capability', db.getFunctionalCapability);
 app.get('/cross_org_capability', db.getCrossOrgCapability);

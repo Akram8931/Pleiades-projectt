@@ -11,12 +11,13 @@
       <div class="col-xs-4">
         <vue-chart chart-type="PieChart" :columns="PieGenderColumns" :rows="$store.state.PieGenderRows" :options="PieGenderOptions"></vue-chart>
       </div>
-        <div class="col-xs-4">
+         <div class="col-xs-4">
 <vue-chart chart-type="PieChart" :columns="PieAgeColumns" :rows="$store.state.PieAgeRows" :options="PieAgeOptions"></vue-chart>
       </div>
 <div class="col-xs-4">
 <vue-chart chart-type="PieChart" :columns="PieRaceColumns" :rows="$store.state.PieRaceRows" :options="PieRaceOptions"></vue-chart>
       </div>
+     
       </div>
     </b-modal>
   </div>
@@ -31,11 +32,12 @@ export default {
     return {
       PieGenderOptions: {
         title: 'GENDER',
-        width: 600,
+        width: 650,
         height: 500,
         curveType: 'function',
         is3D: true,
         legend: 'none',
+        chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         slices: {
           0: { color: '#0c586f' },
           1: { color: 'black' },
@@ -46,11 +48,12 @@ export default {
       },
       PieAgeOptions: {
         title: 'Age',
-        width: 600,
+        width: 650,
         height: 500,
         curveType: 'function',
         is3D: true,
         legend: 'none',
+        chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         slices: {
           0: { color: '#0c586f' },
           1: { color: 'black' },
@@ -61,9 +64,10 @@ export default {
       },
       PieRaceOptions: {
         title: 'Race',
-        width: 600,
+        width: 650,
         height: 500,
         curveType: 'function',
+        chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         is3D: true,
         legend: 'none',
         slices: {
@@ -86,7 +90,7 @@ export default {
       ],
       PieAgeColumns: [
         {
-          type: 'number',
+          type: 'string',
           label: 'Age',
         },
         {
@@ -122,35 +126,35 @@ export default {
   methods: {
     drawVisualization() {
       const self = this;
-        const data = window.google.visualization.arrayToDataTable(
-          self.$store.state.USStates,
-        );
-        const opts = {
-          title: 'Popularity by Countries',
-          width: '100%',
-          height: 500,
-          region: 'US',
-          displayMode: 'regions',
-          colorAxis: { colors: ['#0c586f', 'black', '#a7b0b7'] },
-          backgroundColor: 'none',
-          datalessRegionColor: 'white',
-          defaultColor: 'white',
-          resolution: 'provinces',
-        };
-        const geochart = new window.google.visualization.GeoChart(
-          document.getElementById('visualization'),
-        );
-        geochart.draw(data, opts);
+      const data = window.google.visualization.arrayToDataTable(
+        self.$store.state.USStates,
+      );
+      const opts = {
+        title: 'Popularity by Countries',
+        width: '100%',
+        height: 500,
+        region: 'US',
+        displayMode: 'regions',
+        colorAxis: { colors: ['#0c586f', 'black', '#a7b0b7'] },
+        backgroundColor: 'none',
+        datalessRegionColor: 'white',
+        defaultColor: 'white',
+        resolution: 'provinces',
+      };
+      const geochart = new window.google.visualization.GeoChart(
+        document.getElementById('visualization'),
+      );
+      geochart.draw(data, opts);
 
-        window.google.visualization.events.addListener(
-          geochart,
-          'select',
-          () => {
-            const newStateName = self.$store.state.USStates[geochart.getSelection()[0].row + 1][0];
-            self.$store.commit('changeStateName', newStateName);
-            self.$store.dispatch('loadPieChart', newStateName);
-          },
-        );
+      window.google.visualization.events.addListener(
+        geochart,
+        'select',
+        () => {
+          const newStateName = self.$store.state.USStates[geochart.getSelection()[0].row + 1][0];
+          self.$store.commit('changeStateName', newStateName);
+          self.$store.dispatch('loadPieChart', newStateName);
+        },
+      );
     },
   },
 };

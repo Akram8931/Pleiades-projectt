@@ -24,6 +24,7 @@ const state = {
     Missouri: 'mo',
     North_Carolina: 'nc',
     California: 'ca',
+    Illinois: 'il',
   },
   statePrev: '',
   functionalChartData: [],
@@ -52,7 +53,12 @@ const mutations = {
   },
   changeStateName(state, Selection) {
     state.stateName = `${Selection} State`;
-    state.statePrev = state.stateFaces[Selection];
+    if (Selection.split(' ').length === 1) {
+      state.statePrev = state.stateFaces[Selection];
+    } else {
+      const newSelection = `${Selection.split(' ')[0]}_${Selection.split(' ')[1]}`;
+      state.statePrev = state.stateFaces[newSelection];
+    }
   },
   setFunctionalChartData(state, payload) {
     state.functionalChartData = payload;
