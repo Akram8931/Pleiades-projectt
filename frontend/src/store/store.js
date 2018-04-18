@@ -100,6 +100,9 @@ const mutations = {
     state.status = 'success';
     state.token = payload.token;
     state.expiryDate = payload.expiryDate;
+    if (Date.now() < state.expiryDate) {
+      state.isExpired = false;
+    }
   },
   AUTH_ERROR(state) {
     state.status = 'error';
@@ -147,7 +150,7 @@ const actions = {
   AUTH_REQUEST({ commit }, user) {
     const NPromise = new Promise((resolve, reject) => {
       commit('AUTH_REQUEST');
-      axios({ url: 'auth', data: user, method: 'POST' })
+      axios({ url: 'http://localhost:3000/login', data: user, method: 'POST' })
         .then((resp) => {
           const token = resp.data.token;
           const expiryDate = resp.data.expiryDate;
