@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 
+
 Vue.use(Vuex);
 
 const state = {
@@ -31,6 +32,10 @@ const state = {
   crossOrgChartData: [],
   activeChartData: [],
   selectedNode: [],
+  token: localStorage.getItem('user-token') || '',
+  status: '',
+  expiryDate: localStorage.getItem('expiry-date') || '',
+  isExpired: true,
 };
 const getters = {};
 const mutations = {
@@ -86,6 +91,25 @@ const mutations = {
   reDrawMainChart(state) {
     state.selectedNode = state.activeChartData;
   },
+
+  // Login methods
+  AUTH_REQUEST(state) {
+    state.status = 'loading';
+  },
+  AUTH_SUCCESS(state, payload) {
+    state.status = 'success';
+    state.token = payload.token;
+    state.expiryDate = payload.expiryDate;
+  },
+  AUTH_ERROR(state) {
+    state.status = 'error';
+  },
+  checkExpiryDate(state, ExpiryDate) {
+    const currentDate = Date.now();
+    if (currentDate < ExpiryDate) {
+      state.isExpired = false;
+    }
+  },
 };
 const actions = {
   // api of US Map
@@ -118,6 +142,28 @@ const actions = {
       .then((response) => {
         commit('setCrossOrgChartData', response.data);
       });
+  },
+  // Login Api
+  AUTH_REQUEST({ commit }, user) {
+    const NPromise = new Promise((resolve, reject) => {
+      commit('AUTH_REQUEST');
+      axios({ url: 'auth', data: user, method: 'POST' })
+        .then((resp) => {
+          const token = resp.data.token;
+          const expiryDate = resp.data.expiryDate;
+
+          localStorage.setItem('user-token', token); // store the token in localstorage
+          localStorage.setItem('expiry-date', expiryDate); // store the expiry date in localstorage
+          commit('AUTH_SUCCESS', { token, expiryDate });
+          resolve(resp);
+        }).catch((err) => {
+          commit('AUTH_ERROR', err);
+          localStorage.removeItem('user-token'); // if the request fails, remove any possible user token if possible
+          localStorage.removeItem('expiry-date'); // if the request fails, remove any possible user expiry date if possible
+
+          reject(err);
+        });
+    });
   },
 };
 
