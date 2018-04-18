@@ -150,7 +150,7 @@ const actions = {
   AUTH_REQUEST({ commit }, user) {
     const NPromise = new Promise((resolve, reject) => {
       commit('AUTH_REQUEST');
-      axios({ url: 'http://localhost:3000/login', data: user, method: 'POST' })
+      axios({ url: 'http://192.168.1.131:3000/login', data: user, method: 'POST' })
         .then((resp) => {
           const token = resp.data.token;
           const expiryDate = resp.data.expiryDate;
