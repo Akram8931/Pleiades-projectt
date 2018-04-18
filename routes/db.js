@@ -74,7 +74,7 @@ module.exports.getRaceGenderAge = function(req, res, next) {
 				}
 				for (var key in ageObject) {
 					if (ageObject.hasOwnProperty(key)) {
-						data.gender.push([key, ageObject[key]])
+						data.age.push([key, ageObject[key]])
 					}
 				}
 				res.send(data);
