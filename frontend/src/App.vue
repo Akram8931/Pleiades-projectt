@@ -5,16 +5,9 @@
 </template>
 
 <script>
-import ChartSankey from './components/ChartSankey';
-
 export default {
   name: 'App',
-  components: {
-    ChartSankey,
-  },
-  created() {
-    this.$store.dispatch('initChart');
-  },
+  created() {  },
 };
 </script>
 
