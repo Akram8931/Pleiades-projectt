@@ -70,7 +70,7 @@ module.exports.getRaceGenderAge = function(req, res, next) {
 			connection.query("SELECT age, count(age) AS age_count FROM presence.od where state_resides_in = '" + req.params['state'] + "' GROUP BY age", function (err, result, fields) {
 				if (err) throw err;
 				for (var i = 0; i < result.length; i++) {
-					ageObject[ageStringKey(result[i].age)] += result[i].age_count]
+					ageObject[ageStringKey(result[i].age)] += result[i].age_count;
 				}
 				for (var key in ageObject) {
 					if (ageObject.hasOwnProperty(key)) {
