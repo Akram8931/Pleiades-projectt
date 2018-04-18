@@ -25,12 +25,26 @@
                         </div>
                     </div>
                     <main>
-                        <!-- <div class="circle-1"></div> -->
-                        <div class="main-wrap">
-                            <!-- <router-link to="/ODLink/Demographic"> Demographic</router-link> -->
-                            <router-link to="/ODLink/ODlinks"> Demographic</router-link>
-                            <router-link to="/ODLink/ODlinks/functional"> Functional Capability </router-link>
-                            <router-link to="/ODLink/ODlinks/cross-org"> Cross Org Capability</router-link>
+
+                   
+                         
+                        <div class="main-wrap"  style="margin-top:9%">
+                             <div class="container"> 
+                                <div class="col-xs-3"> 
+        
+                                </div> 
+                                <div class="col-xs-6"> 
+                                    <div class="col-xs-4 tabBtn" > 
+                                    <router-link to="/ODLink/ODlinks"> Demographic</router-link>
+                                    </div>
+                                    <div class="col-xs-4 tabBtn" > 
+                                    <router-link to="/ODLink/ODlinks/functional"> Functional Capability </router-link>
+                                    </div>
+                                    <div class="col-xs-4 tabBtn"> 
+                                    <router-link to="/ODLink/ODlinks/cross-org"> Cross Org Capability</router-link>
+                                    </div>
+                                </div>
+                             </div>
                             <router-view/>
                         </div>
                     </main>
