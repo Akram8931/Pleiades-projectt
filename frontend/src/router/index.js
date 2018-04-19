@@ -36,9 +36,9 @@ const router = new Router({
       name: 'ODLink',
       component: ODLink,
       children: [
-        { path: '', component: Demographic },
-        { path: 'CrossOrg', component: CrossOrg },
-        { path: 'Functional', component: Functional },
+        { path: '', component: Demographic, name: Demographic },
+        { path: 'CrossOrg', component: CrossOrg, name: CrossOrg },
+        { path: 'Functional', component: Functional, name: Functional },
       ],
     },
   ],
@@ -47,9 +47,17 @@ const router = new Router({
 
 
 router.beforeEach((to, from, next) => {
-  const isAuthorized = store.state.token !== '' && !store.state.isExpired;
-  if (to.name === 'Login' || isAuthorized) {
-    next();
+  const isAuthorized = store.state.token !== '' && store.state.isExpired === 'false';
+  if (to.name !== null) {
+    if (to.name !== 'Login') {
+      if (isAuthorized) {
+        next();
+      } else {
+        next({ name: 'Login' });
+      }
+    } else {
+      next();
+    }
   } else {
     next({ name: 'Login' });
   }

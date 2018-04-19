@@ -92,17 +92,16 @@
                         <div class="figure">
                             <div class="image-wrap-2">
                                 <div class="image-wrap-3">
-                                    <div class="thumbnail">
-                                        <!-- <a href="/OD" class="thumb" data-fancybox-group='1'>
-
-                                        </a> -->
+                                    <div class="thumbnail">                                   
                                         <router-link to="/OD"  class="thumb" data-fancybox-group='1'>
                                             <img src="../assets/images/World-Map.jpg" alt="">
                                         </router-link>
 
                                         <div class="thumbnail_overlay">
                                             <div class="caption">
-                                                <a href="" class="small">OD</a>
+                                                    <router-link to="/OD"  class="small" data-fancybox-group='1'>
+                                                    OD
+                                        </router-link>
                                             </div>
                                         </div>
                                     </div>
@@ -119,7 +118,7 @@
 
                                         <div class="thumbnail_overlay thumbnail_overlay--skin">
                                             <div class="caption caption--mod">
-                                                <a href="#" class="small">Social <br> unrest</a>
+                                                <a href="javascript:function() { return false; }" class="small">Social <br> unrest</a>
                                             </div>
                                         </div>
                                     </div>
@@ -136,7 +135,7 @@
 
                                         <div class="thumbnail_overlay">
                                             <div class="caption">
-                                                <a href="#" class="small">Military <br> Readiness</a>
+                                                <a href="javascript:function() { return false; }" class="small">Military <br> Readiness</a>
                                             </div>
                                         </div>
                                     </div>
@@ -164,7 +163,7 @@
 
                                         <div class="thumbnail_overlay">
                                             <div class="caption">
-                                                <a href="#" class="small">IADF <br> COP</a>
+                                                <a href="javascript:function() { return false; }" class="small">IADF <br> COP</a>
                                             </div>
                                         </div>
                                     </div>
@@ -181,7 +180,7 @@
 
                                         <div class="thumbnail_overlay thumbnail_overlay--skin">
                                             <div class="caption caption--mod">
-                                                <a href="#" class="small">Cyber <br> policy</a>
+                                                <a href="javascript:function() { return false; }" class="small">Cyber <br> policy</a>
                                             </div>
                                         </div>
                                     </div>
@@ -198,7 +197,7 @@
 
                                         <div class="thumbnail_overlay">
                                             <div class="caption">
-                                                <a href="#" class="small">ICE</a>
+                                                <a href="javascript:function() { return false; }" class="small">ICE</a>
                                             </div>
                                         </div>
                                     </div>
@@ -249,11 +248,11 @@
 
                                             <div class="thumbnail_overlay">
                                                 <div class="caption">
-                                                    <a href="#" class="small">NSC
+                                                    <a href="javascript:function() { return false; }" class="small">NSC
                                                         </a>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>="#"
                                     </div>
                                 </div>
                             </div>

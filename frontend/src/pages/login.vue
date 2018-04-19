@@ -19,7 +19,7 @@
                         <input type="password" required v-model="password" class="form-control" placeholder="Enter Password">
                     </div>
                 </div>
-            </div>           
+            </div>
                <button type="submit"  class="submitLogin btn">Login</button>
         </form>
     </div>
@@ -28,34 +28,34 @@
 
 <script>
 export default {
-  name: "Login",
+  name: 'Login',
   data() {
     return {
-      username: "",
-      password: ""
+      username: '',
+      password: '',
     };
   },
   computed: {
     token() {
-     return this.$store.state.token;
+      return this.$store.state.token;
     },
   },
   watch: {
     token() {
-        if(!this.$store.state.isExpired){
-            this.$router.push("/Home");
-        }
+      if (this.$store.state.isExpired === 'false') {
+        this.$router.push('/Home');
+      }
     },
   },
   methods: {
-    login() {   
+    login() {
       this.$store
-        .dispatch("AUTH_REQUEST", {
+        .dispatch('AUTH_REQUEST', {
           username: this.username,
-          password: this.password
+          password: this.password,
         });
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
