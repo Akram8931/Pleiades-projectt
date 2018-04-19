@@ -2688,3 +2688,8 @@ footer .copyright {
   -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
   transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
 }
+
+.vue-chart-container svg:not(:root) {
+  position: relative !important;
+    left: -50px !important;
+}
