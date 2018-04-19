@@ -82,3 +82,10 @@ module.exports.getRaceGenderAge = function(req, res, next) {
 		});
 	});
 };
+
+module.exports.getUser = function(username, password, callback) {
+	connection.query(`SELECT * FROM presence.users where username = '${username}' AND password = '${password}'`, function (err, result, fields) {
+		if (err) throw err;
+		return callback(result);
+	});
+};
