@@ -74,7 +74,6 @@ const mutations = {
     state.status = 'loading';
   },
   AUTH_SUCCESS(state, payload) {
-    debugger;
     state.status = 'success';
     state.token = payload.token;
     state.expiryDate = payload.expiryDate;
