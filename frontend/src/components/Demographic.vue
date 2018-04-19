@@ -10,12 +10,15 @@
 <span class="stateface stateface-replace" :class="'stateface-' + $store.state.statePrev">{{$store.state.statePrev}}</span>
         </div>
       <div class="col-xs-4">
+        <h5 class="text-center" style="padding-left: 69px;">Gender</h5>
         <vue-chart chart-type="PieChart" :columns="PieGenderColumns" :rows="$store.state.PieGenderRows" :options="PieGenderOptions"></vue-chart>
       </div>
          <div class="col-xs-4">
+           <h5 class="text-center" style="padding-left: 69px;">Age</h5>
 <vue-chart chart-type="PieChart" :columns="PieAgeColumns" :rows="$store.state.PieAgeRows" :options="PieAgeOptions"></vue-chart>
       </div>
 <div class="col-xs-4">
+  <h5 class="text-center" style="padding-left: 69px;">Race</h5>
 <vue-chart chart-type="PieChart" :columns="PieRaceColumns" :rows="$store.state.PieRaceRows" :options="PieRaceOptions"></vue-chart>
       </div>
 

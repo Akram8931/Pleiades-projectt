@@ -42,18 +42,18 @@ export default {
   },
   watch: {
     token() {
-      if (this.$store.state.isExpired=='false') {
+      if (this.$store.state.isExpired === 'false') {
         this.$router.push('/Home');
       }
     },
   },
   methods: {
     login() {
-       this.$store
-         .dispatch("AUTH_REQUEST", {
-         username: this.username,
-          password: this.password
-         });
+      this.$store
+        .dispatch('AUTH_REQUEST', {
+          username: this.username,
+          password: this.password,
+        });
     },
   },
 };
