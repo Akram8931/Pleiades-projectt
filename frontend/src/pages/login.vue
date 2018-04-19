@@ -21,6 +21,7 @@
                 </div>
             </div>
                <button type="submit"  class="submitLogin btn">Login</button>
+               <p class="text-danger" v-if="$store.state.LoginError"> Invalid user name or password</p>
         </form>
     </div>
        </div>

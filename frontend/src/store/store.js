@@ -13,6 +13,7 @@ const state = {
   PieAgeRows: [],
   PieRaceRows: [],
   stateName: null,
+  LoginError: false,
   stateFaces: {
     Florida: 'fl',
     Washington_DC: 'wa',
@@ -55,7 +56,7 @@ const mutations = {
     state.modalShow = !state.modalShow;
   },
   changeStateName(state, Selection) {
-    state.stateName = `${Selection} State`;
+    state.stateName = `${Selection}`;
     if (Selection.split(' ').length === 1) {
       state.statePrev = state.stateFaces[Selection];
     } else {
@@ -88,6 +89,9 @@ const mutations = {
   },
   AUTH_ERROR(state) {
     state.status = 'error';
+  },
+  ErrorInLogin(state) {
+    state.LoginError = true;
   },
   initialiseStore(state) {
     if (localStorage.getItem('user-token')) {
@@ -155,6 +159,7 @@ const actions = {
           localStorage.setItem('isExpired', state.isExpired);
           resolve(resp);
         }).catch((err) => {
+          commit('ErrorInLogin');
           commit('AUTH_ERROR', err);
           localStorage.removeItem('user-token');
           localStorage.removeItem('expiry-date');
