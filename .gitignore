@@ -28,3 +28,4 @@ benchmarks/graphs
 
 frontend/dist/*
 
+frontend/src/env.js

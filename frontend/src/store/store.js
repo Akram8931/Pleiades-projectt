@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
-
+import env from '@/env';
 
 Vue.use(Vuex);
 
@@ -114,14 +114,14 @@ const mutations = {
 const actions = {
   // api of US Map
   loadUSAMap(context) {
-    axios.get('http://192.168.1.131:3000/us_map').then((Response) => {
+    axios.get(env.server.url + '/us_map').then((Response) => {
       context.commit('SetUSMapData', Response.data);
     });
   },
   // api of Pie Charts
   loadPieChart(context, stateName) {
     axios
-      .get(`http://192.168.1.131:3000/race_gender_age/${stateName}`)
+      .get(env.server.url + `/race_gender_age/${stateName}`)
       .then((Response) => {
         context.commit('SetGenderData', Response.data.gender);
         context.commit('SetAgeData', Response.data.age);
@@ -132,13 +132,13 @@ const actions = {
       });
   },
   initCrossOrgChart({ commit }) {
-    axios.get('http://192.168.1.131:3000/cross_org_capability')
+    axios.get(env.server.url + '/cross_org_capability')
       .then((response) => {
         commit('setCrossOrgChartData', response.data);
       });
   },
   initfunctionalChart({ commit }) {
-    axios.get('http://192.168.1.131:3000/functional_capability')
+    axios.get(env.server.url + '/functional_capability')
       .then((response) => {
         commit('setFunctionalChartData', response.data);
       });
@@ -147,7 +147,7 @@ const actions = {
   AUTH_REQUEST({ commit }, user) {
     const NPromise = new Promise((resolve, reject) => {
       commit('AUTH_REQUEST');
-      axios({ url: 'http://192.168.1.131:3000/login', data: user, method: 'POST' })
+      axios({ url: env.server.url + '/login', data: user, method: 'POST' })
         .then((resp) => {
           const token = resp.data.token;
           const expiryDate = resp.data.expiryDate;
