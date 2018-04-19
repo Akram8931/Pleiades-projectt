@@ -1,6 +1,7 @@
 <template>
 <div>
-<div id="visualization" style="margin: 1em"> </div>
+<div v-if="ListOfStates.length !== 0" id="visualization" style="margin: 1em"> </div>
+   <h1 v-else>Map Loading ..... </h1>
   <div>
       <b-modal v-model="$store.state.modalShow" :title="$store.state.stateName">
       <div class="d-block text-center">
@@ -9,12 +10,15 @@
 <span class="stateface stateface-replace" :class="'stateface-' + $store.state.statePrev">{{$store.state.statePrev}}</span>
         </div>
       <div class="col-xs-4">
+        <h5 class="text-center" style="padding-left: 69px;">Gender</h5>
         <vue-chart chart-type="PieChart" :columns="PieGenderColumns" :rows="$store.state.PieGenderRows" :options="PieGenderOptions"></vue-chart>
       </div>
          <div class="col-xs-4">
+           <h5 class="text-center" style="padding-left: 69px;">Age</h5>
 <vue-chart chart-type="PieChart" :columns="PieAgeColumns" :rows="$store.state.PieAgeRows" :options="PieAgeOptions"></vue-chart>
       </div>
 <div class="col-xs-4">
+  <h5 class="text-center" style="padding-left: 69px;">Race</h5>
 <vue-chart chart-type="PieChart" :columns="PieRaceColumns" :rows="$store.state.PieRaceRows" :options="PieRaceOptions"></vue-chart>
       </div>
 
@@ -124,23 +128,50 @@ export default {
     },
   },
   created() {
-    debugger;
     this.$store.dispatch('loadUSAMap');
   },
   methods: {
     drawVisualization() {
       const self = this;
+      window.google.charts.load('current', {
+        packages: ['geochart'],
+      });
+      window.google.charts.setOnLoadCallback(() => drawChart());
 
-      window.google.visualization.events.addListener(
-        geochart,
-        'select',
-        () => {
-          const newStateName = self.$store.state.USStates[geochart.getSelection()[0].row + 1][0];
-          self.$store.commit('changeStateName', newStateName);
-          self.$store.dispatch('loadPieChart', newStateName);
-        },
-      );
-    // }
+      // drawChart()
+
+      function drawChart() {
+        const data = window.google.visualization.arrayToDataTable(
+          self.$store.state.USStates,
+        );
+        const opts = {
+          title: 'Popularity by Countries',
+          width: '100%',
+          height: 500,
+          region: 'US',
+          displayMode: 'regions',
+          colorAxis: { colors: ['#0c586f', 'black', '#a7b0b7'] },
+          backgroundColor: 'none',
+          datalessRegionColor: 'white',
+          defaultColor: 'white',
+          resolution: 'provinces',
+        };
+        const geochart = new window.google.visualization.GeoChart(
+          document.getElementById('visualization'),
+        );
+        geochart.draw(data, opts);
+        window.google.visualization.events.addListener(
+          geochart,
+          'select',
+          () => {
+            const newStateName =
+              self.$store.state.USStates[geochart.getSelection()[0].row + 1][0];
+            self.$store.commit('changeStateName', newStateName);
+            self.$store.dispatch('loadPieChart', newStateName);
+          },
+        );
+        // }
+      }
     },
   },
 };
