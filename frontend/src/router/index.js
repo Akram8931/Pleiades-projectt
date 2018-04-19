@@ -47,11 +47,16 @@ const router = new Router({
 
 
 router.beforeEach((to, from, next) => {
-  const isAuthorized = store.state.token !== '' && !store.state.isExpired;
-  if (to.name === 'Login' || isAuthorized) {
-    next();
+  const isAuthorized = store.state.token !== '' && store.state.isExpired === 'false';
+
+  if (to.name !== 'Login') {
+    if (isAuthorized) {
+      next();
+    } else {
+      next({ name: 'Login' });
+    }
   } else {
-    next({ name: 'Login' });
+    next();
   }
 });
 

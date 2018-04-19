@@ -7,7 +7,9 @@
 <script>
 export default {
   name: 'App',
-  created() {  },
+    beforeCreate () {
+    this.$store.commit('initialiseStore')
+  }
 };
 </script>
 
