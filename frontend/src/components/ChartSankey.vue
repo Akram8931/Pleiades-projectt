@@ -1,9 +1,7 @@
 <template>
   <div class="sankey-chart">
-    <div class="container">
       <button v-if="viewButton" class="btn btn-main" @click.prevent="reDrawMainChart">Back</button>
       <div id="sankey_basic"></div>  
-    </div>
   </div>
 </template>
 
