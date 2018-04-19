@@ -14,21 +14,23 @@
                     <div id="stuck_container" class="stuck_container">
                         <div class="container relative">
                             <div class="row">
-                                <div class="rd-navbar-brand__logo">
+                                <div class="rd-navbar-brand__logo col-xs-2">
+                                    <router-link to="/Home">
                                     <div class="figure-6">
                                         <div class="figure-5">
                                             <div class="figure-5__wrap">
-                                                <a href="./">P</a>
+                                                <router-link to="/Home">P</router-link>
                                             </div>
                                         </div>
                                     </div>
+                                    </router-link>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="rd-navbar-brand">
                                     <div class="rd-navbar-brand__name">
-                                        <a href="./">PLEIADES</a>
+                                        <router-link to="/Home">PLEIADES</router-link>
 
                                         <div class="figure-4">
                                             <div class="figure-4__wrap"></div>

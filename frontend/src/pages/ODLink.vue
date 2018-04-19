@@ -11,14 +11,16 @@
                         <div id="stuck_container" class="stuck_container">
                             <div class="container relative">
                                 <div class="row">
-                                    <div class="rd-navbar-brand__logo ">
+                                    <div class="rd-navbar-brand__logo col-xs-2">
+                                        <router-link to="/Home">
                                         <div class="figure-6">
                                             <div class="figure-5">
                                                 <div class="figure-5__wrap">
-                                                    <a href="./">P</a>
+                                                    <router-link to="/Home">P</router-link>
                                                 </div>
                                             </div>
                                         </div>
+                                        </router-link>
                                     </div>
                                 </div>
                             </div>
@@ -26,23 +28,22 @@
                     </div>
                     <main>
                         <div class="main-wrap"  style="min-height:900px ;padding-top:9%">
-                             <div class="container">
-                                <div class="col-xs-3">
-
-                                </div>
-                                <div class="col-xs-6" style="margin-bottom:40px">
-                                    <div class="col-xs-4 tabBtn" >
+                             <div class="container-fluid">
+                                <div class="col-xs-2">
+                                    <div class="col-xs-12 tabBtn" >
                                     <router-link to="/ODLink/ODlinks"> Demographic</router-link>
                                     </div>
-                                    <div class="col-xs-4 tabBtn" >
+                                    <div class="col-xs-12 tabBtn" >
                                     <router-link to="/ODLink/ODlinks/Functional"> Functional Capability </router-link>
                                     </div>
-                                    <div class="col-xs-4 tabBtn">
+                                    <div class="col-xs-12 tabBtn">
                                     <router-link to="/ODLink/ODlinks/CrossOrg"> Cross Org Capability</router-link>
                                     </div>
                                 </div>
+                                <div class="col-xs-9" style="margin-bottom:40px">
+                                    <router-view/>
+                                </div>
                              </div>
-                            <router-view/>
                         </div>
                     </main>
 

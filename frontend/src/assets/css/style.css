@@ -386,6 +386,12 @@ h2 + .row {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
+.rd-navbar-brand__name a:hover,
+.rd-navbar-brand__name a:active,
+.rd-navbar-brand__logo a:hover,
+.rd-navbar-brand__logo a:active{
+  text-decoration: none;
+}
 @media (min-width: 992px) {
   .rd-navbar-brand__name .figure-4:before {
     content: "";
@@ -573,6 +579,7 @@ h2 + .row {
     top: auto;
     float: left;
     margin-left: 129px;
+    height:100px;
   }
 }
 
@@ -1035,7 +1042,7 @@ p {
   float: right;
 }
 .titlePage{
-  margin: 85px auto;
+  margin: 65px auto;
 }
 .paddtop{
   padding-top:28px;

@@ -1,11 +1,11 @@
 <template>
 <div>
-<div v-if="ListOfStates.length !== 0" id="visualization" style="margin: 1em"> </div>
+<div v-if="ListOfStates.length !== 0" id="visualization" style="margin: 1em; position:absolute; top:100px; right:26%"> </div>
    <h1 v-else>Map Loading ..... </h1>
   <div>
       <b-modal v-model="$store.state.modalShow" :title="$store.state.stateName">
       <div class="d-block text-center">
-        <div class="col-xs-12 text-center" style="height:200px">
+        <div class="col-xs-12 text-center" style="height:200px; margin-top: 30px;">
 
 <span class="stateface stateface-replace" :class="'stateface-' + $store.state.statePrev">{{$store.state.statePrev}}</span>
         </div>
