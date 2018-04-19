@@ -81,17 +81,14 @@ const mutations = {
     if (Date.now() < state.expiryDate) {
       state.isExpired = 'false';
       localStorage.setItem('isExpired', state.isExpired);
+    } else {
+      localStorage.removeItem('user-token');
+      localStorage.removeItem('expiry-date');
+      localStorage.removeItem('isExpired');
     }
   },
   AUTH_ERROR(state) {
     state.status = 'error';
-  },
-  checkExpiryDate(state, ExpiryDate) {
-    const currentDate = Date.now();
-    if (currentDate < ExpiryDate) {
-      state.isExpired = 'false';
-      localStorage.setItem('isExpired', state.isExpired);
-    }
   },
   initialiseStore(state) {
     if (localStorage.getItem('user-token')) {
