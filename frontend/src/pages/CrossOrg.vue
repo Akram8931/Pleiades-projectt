@@ -2,7 +2,11 @@
     <div class="cross-org">
 
         <ChartSankey v-if="crossOrgChartData.length !== 0" :dataChart="crossOrgChartData"></ChartSankey>
-        <h1 v-else>Chart Loading ..... </h1>
+                <div class="lds-css ng-scope" v-else>
+<div class="lds-spin" style="100%;height:100%">
+  <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div></div>
+        </div>
+        <!-- <h1 v-else>Chart Loading ..... </h1> -->
     </div>
 </template>
 
