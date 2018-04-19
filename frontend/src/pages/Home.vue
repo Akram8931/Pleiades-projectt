@@ -30,7 +30,7 @@
                             <div class="row">
                                 <div class="rd-navbar-brand">
                                     <div class="rd-navbar-brand__name">
-                                        <a href="./">PLEIADES</a>
+                                        <router-link to="/Home">PLEIADES</router-link>
 
                                         <div class="figure-4">
                                             <div class="figure-4__wrap"></div>
