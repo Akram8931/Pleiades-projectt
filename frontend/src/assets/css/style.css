@@ -2536,3 +2536,8 @@ footer .copyright {
     margin: 1.75rem auto;
 }
 }
+
+.vue-chart-container svg:not(:root) {
+  position: relative !important;
+    left: -50px !important;
+}
