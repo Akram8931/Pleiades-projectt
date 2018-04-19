@@ -55,8 +55,11 @@
 
                                                 <div class="thumbnail_overlay">
                                                     <div class="caption">
-                                                        <a href="#" class="small">Quick
-                                                            <br> Quits</a>
+                                                        <router-link to="/ODLink/ODlinks" class="small" data-fancybox-group='1'>
+                                                        Quick
+                                                            <br> Quits
+                                                        </router-link>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
