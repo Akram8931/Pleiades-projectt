@@ -1,7 +1,10 @@
 <template>
 <div>
 <div v-if="ListOfStates.length !== 0" id="visualization" style="margin: 1em; position:absolute; top:100px; right:26%"> </div>
-   <h1 v-else>Map Loading ..... </h1>
+           <div class="lds-css ng-scope" v-else>
+<div class="lds-spin" style="100%;height:100%">
+  <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div></div>
+        </div>
   <div>
       <b-modal v-model="$store.state.modalShow" :title="$store.state.stateName">
       <div class="d-block text-center">
