@@ -10,14 +10,16 @@
                     <div id="stuck_container" class="stuck_container">
                         <div class="container relative">
                             <div class="row">
-                                <div class="rd-navbar-brand__logo ">
+                                <div class="rd-navbar-brand__logo col-xs-2">
+                                    <router-link to="/Home">
                                     <div class="figure-6">
                                         <div class="figure-5">
                                             <div class="figure-5__wrap">
-                                                <a href="./">P</a>
+                                                <router-link to="/Home">P</router-link>
                                             </div>
                                         </div>
                                     </div>
+                                    </router-link>
                                 </div>
                             </div>
                         </div>
@@ -55,8 +57,11 @@
 
                                                 <div class="thumbnail_overlay">
                                                     <div class="caption">
-                                                        <a href="#" class="small">Quick
-                                                            <br> Quits</a>
+                                                        <router-link to="/ODLink/ODlinks" class="small" data-fancybox-group='1'>
+                                                        Quick
+                                                            <br> Quits
+                                                        </router-link>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
@@ -67,13 +72,13 @@
                                     <div class="image-wrap-3">
                                         <div class="image-wrap-2">
                                             <div class="thumbnail">
-                                                <a href="" class="thumb" data-fancybox-group='1'>
+                                                <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                     <img src="../assets/images/bigstock--127460828.jpg" alt="">
                                                 </a>
 
                                                 <div class="thumbnail_overlay thumbnail_overlay--skin">
                                                     <div class="caption caption--mod">
-                                                        <a href="#" class="small">Price
+                                                        <a href="javascript:function() { return false; }" class="small">Price
                                                             <br> Law</a>
                                                     </div>
                                                 </div>
@@ -85,13 +90,13 @@
                                     <div class="image-wrap-2">
                                         <div class="image-wrap-3">
                                             <div class="thumbnail">
-                                                <a href="" class="thumb" data-fancybox-group='1'>
+                                                <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                     <img src="../assets/images/bigstock-best-concept-of-global-busines-15987380.jpg" alt="">
                                                 </a>
 
                                                 <div class="thumbnail_overlay">
                                                     <div class="caption">
-                                                        <a href="#" class="small">Capability
+                                                        <a href="javascript:function() { return false; }" class="small">Capability
                                                             <br> Visualization</a>
                                                     </div>
                                                 </div>
@@ -108,13 +113,13 @@
                                         <div class="image-wrap-3">
                                             <div class="image-wrap-2">
                                                 <div class="thumbnail">
-                                                    <a href="" class="thumb" data-fancybox-group='1'>
+                                                    <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                         <img src="../assets/images/bigstock-Color-light-traces-over-black--100445951.jpg" alt="">
                                                     </a>
 
                                                     <div class="thumbnail_overlay thumbnail_overlay--skin">
                                                         <div class="caption caption--mod">
-                                                            <a href="#" class="small">Alignment to
+                                                            <a href="javascript:function() { return false; }" class="small">Alignment to
                                                                 <br> Efforts</a>
                                                         </div>
                                                     </div>
@@ -126,13 +131,13 @@
                                         <div class="image-wrap-2">
                                             <div class="image-wrap-3">
                                                 <div class="thumbnail">
-                                                    <a href="" class="thumb" data-fancybox-group='1'>
+                                                    <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                         <img src="../assets/images/Pleiades Cluster 2.jpg" alt="">
                                                     </a>
 
                                                     <div class="thumbnail_overlay">
                                                         <div class="caption">
-                                                            <a href="#" class="small"> Turnover
+                                                            <a href="javascript:function() { return false; }" class="small"> Turnover
                                                                 <br> Predictions</a>
                                                         </div>
                                                     </div>
@@ -144,13 +149,13 @@
                                         <div class="image-wrap-3">
                                             <div class="image-wrap-2">
                                                 <div class="thumbnail">
-                                                    <a href="" class="thumb" data-fancybox-group='1'>
+                                                    <a href="javascript:function() { return false; }" class="thumb" data-fancybox-group='1'>
                                                         <img src="../assets/images/World-Map.jpg" alt="">
                                                     </a>
 
                                                     <div class="thumbnail_overlay thumbnail_overlay--skin">
                                                         <div class="caption caption--mod">
-                                                            <a href="#" class="small">Genetic
+                                                            <a href="javascript:function() { return false; }" class="small">Genetic
                                                                 <br> Algorithm</a>
                                                         </div>
                                                     </div>

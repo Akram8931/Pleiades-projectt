@@ -54,6 +54,9 @@ var ageStringKey = function(age) {
 
 module.exports.getRaceGenderAge = function(req, res, next) {
 	var data = {race: [], gender: [], age: []};
+	var ageObject = {
+		"<20": 0, "21-30": 0, "31-40": 0, "41-50": 0, "50+": 0
+	}
 	connection.query("SELECT race, count(race) AS race_count FROM presence.od where state_resides_in = '" + req.params['state'] + "' GROUP BY race", function (err, result, fields) {
 		if (err) throw err;
 		for (var i = 0; i < result.length; i++) {
@@ -67,10 +70,22 @@ module.exports.getRaceGenderAge = function(req, res, next) {
 			connection.query("SELECT age, count(age) AS age_count FROM presence.od where state_resides_in = '" + req.params['state'] + "' GROUP BY age", function (err, result, fields) {
 				if (err) throw err;
 				for (var i = 0; i < result.length; i++) {
-					data.age.push([ageStringKey(result[i].age), result[i].age_count])
+					ageObject[ageStringKey(result[i].age)] += result[i].age_count;
+				}
+				for (var key in ageObject) {
+					if (ageObject.hasOwnProperty(key)) {
+						data.age.push([key, ageObject[key]])
+					}
 				}
 				res.send(data);
 			});
 		});
+	});
+};
+
+module.exports.getUser = function(username, password, callback) {
+	connection.query(`SELECT * FROM presence.users where username = '${username}' AND password = '${password}'`, function (err, result, fields) {
+		if (err) throw err;
+		return callback(result);
 	});
 };

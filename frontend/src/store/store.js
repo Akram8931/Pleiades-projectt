@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 
+
 Vue.use(Vuex);
 
 const state = {
@@ -29,8 +30,10 @@ const state = {
   statePrev: '',
   functionalChartData: [],
   crossOrgChartData: [],
-  activeChartData: [],
-  selectedNode: [],
+  isExpired: localStorage.getItem('isExpired') || 'true',
+  expiryDate: localStorage.getItem('expiry-date') || '',
+  status: '',
+  token: localStorage.getItem('user-token') || '',
 };
 const getters = {};
 const mutations = {
@@ -63,34 +66,51 @@ const mutations = {
   setFunctionalChartData(state, payload) {
     state.functionalChartData = payload;
   },
-
   setCrossOrgChartData(state, payload) {
     state.crossOrgChartData = payload;
   },
-  getSelectedNode(state, selectedNodeName) {
-    state.selectedNode = _.filter(state.activeChartData, (o) => {
-      if (o.indexOf(selectedNodeName) > -1) {
-        return o;
-      }
-    });
+  // Login methods
+  AUTH_REQUEST(state) {
+    state.status = 'loading';
   },
-  activeChartData(state, payload) {
-    if (payload === 'functional') {
-      state.activeChartData = state.functionalChartData;
-    } else if (payload === 'cross-org') {
-      state.activeChartData = state.crossOrgChartData;
+  AUTH_SUCCESS(state, payload) {
+    state.status = 'success';
+    state.token = payload.token;
+    state.expiryDate = payload.expiryDate;
+    if (Date.now() < state.expiryDate) {
+      state.isExpired = 'false';
+      localStorage.setItem('isExpired', state.isExpired);
+    } else {
+      localStorage.removeItem('user-token');
+      localStorage.removeItem('expiry-date');
+      localStorage.removeItem('isExpired');
     }
-
-    state.selectedNode = state.activeChartData;
   },
-  reDrawMainChart(state) {
-    state.selectedNode = state.activeChartData;
+  AUTH_ERROR(state) {
+    state.status = 'error';
+  },
+  initialiseStore(state) {
+    if (localStorage.getItem('user-token')) {
+      this.replaceState(
+        Object.assign(state, JSON.parse(localStorage.getItem('store'))),
+      );
+    }
+    if (localStorage.getItem('expiry-date')) {
+      this.replaceState(
+        Object.assign(state, JSON.parse(localStorage.getItem('expiry-date'))),
+      );
+    }
+    if (localStorage.getItem('isExpired')) {
+      this.replaceState(
+        Object.assign(state, JSON.parse(localStorage.getItem('isExpired'))),
+      );
+    }
   },
 };
 const actions = {
   // api of US Map
   loadUSAMap(context) {
-    axios.get('http://red-alphar.com/us_map').then((Response) => {
+    axios.get('http://192.168.1.131:3000/us_map').then((Response) => {
       context.commit('SetUSMapData', Response.data);
     });
   },
@@ -107,17 +127,42 @@ const actions = {
         context.commit('showModal');
       });
   },
-  initChart({ commit }) {
-    axios.get('http://red-alphar.com/functional_capability')
-      .then((response) => {
-        commit('setFunctionalChartData', response.data);
-      });
-
-
-    axios.get('http://red-alphar.com/cross_org_capability')
+  initCrossOrgChart({ commit }) {
+    axios.get('http://192.168.1.131:3000/cross_org_capability')
       .then((response) => {
         commit('setCrossOrgChartData', response.data);
       });
+  },
+  initfunctionalChart({ commit }) {
+    axios.get('http://192.168.1.131:3000/functional_capability')
+      .then((response) => {
+        commit('setFunctionalChartData', response.data);
+      });
+  },
+  // Login Api
+  AUTH_REQUEST({ commit }, user) {
+    const NPromise = new Promise((resolve, reject) => {
+      commit('AUTH_REQUEST');
+      axios({ url: 'http://192.168.1.131:3000/login', data: user, method: 'POST' })
+        .then((resp) => {
+          const token = resp.data.token;
+          const expiryDate = resp.data.expiryDate;
+
+          localStorage.setItem('user-token', token);
+          localStorage.setItem('expiry-date', expiryDate);
+
+          commit('AUTH_SUCCESS', { token, expiryDate });
+          localStorage.setItem('isExpired', state.isExpired);
+          resolve(resp);
+        }).catch((err) => {
+          commit('AUTH_ERROR', err);
+          localStorage.removeItem('user-token');
+          localStorage.removeItem('expiry-date');
+          localStorage.removeItem('isExpired');
+
+          reject(err);
+        });
+    });
   },
 };
 
@@ -128,3 +173,10 @@ const store = new Vuex.Store({
   actions,
 });
 export default store;
+
+
+store.subscribe((mutation, state) => {
+  localStorage.setItem('user-token', state.token);
+  localStorage.setItem('expiry-date', state.expiryDate);
+  localStorage.setItem('isExpired', state.isExpired);
+});

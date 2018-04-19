@@ -1,26 +1,26 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+
+import store from '@/store/store';
+
 import Login from '@/pages/login';
 import Home from '@/pages/Home';
 import OD from '@/pages/OD';
+import CrossOrg from '@/pages/CrossOrg';
+import Functional from '@/pages/Functional';
+
 import ODLink from '@/pages/ODLink';
 import Demographic from '@/components/Demographic';
-import ChartSankey from '@/components/ChartSankey';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
       name: 'Login',
       component: Login,
     },
-    // {
-    //   path: '/',
-    //   name: 'ChartSankey',
-    //   component: ChartSankey,
-    // },
     {
       path: '/Home',
       name: 'Home',
@@ -36,10 +36,32 @@ export default new Router({
       name: 'ODLink',
       component: ODLink,
       children: [
-        { path: '', component: Demographic },
-        { path: ':name', component: ChartSankey },
+        { path: '', component: Demographic, name: Demographic },
+        { path: 'CrossOrg', component: CrossOrg, name: CrossOrg },
+        { path: 'Functional', component: Functional, name: Functional },
       ],
     },
   ],
   linkActiveClass: 'activeLink',
 });
+
+
+router.beforeEach((to, from, next) => {
+  const isAuthorized = store.state.token !== '' && store.state.isExpired === 'false';
+  if (to.name !== null) {
+    if (to.name !== 'Login') {
+      if (isAuthorized) {
+        next();
+      } else {
+        next({ name: 'Login' });
+      }
+    } else {
+      next();
+    }
+  } else {
+    next({ name: 'Login' });
+  }
+});
+
+
+export default router;
