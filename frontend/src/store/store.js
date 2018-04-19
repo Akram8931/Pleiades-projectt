@@ -55,7 +55,7 @@ const mutations = {
     state.modalShow = !state.modalShow;
   },
   changeStateName(state, Selection) {
-    state.stateName = `${Selection} State`;
+    state.stateName = `${Selection}`;
     if (Selection.split(' ').length === 1) {
       state.statePrev = state.stateFaces[Selection];
     } else {

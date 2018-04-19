@@ -2539,5 +2539,5 @@ footer .copyright {
 
 .vue-chart-container svg:not(:root) {
   position: relative !important;
-    left: -50px !important;
+    left: 25px !important;
 }

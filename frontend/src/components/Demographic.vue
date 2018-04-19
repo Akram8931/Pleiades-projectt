@@ -10,15 +10,15 @@
 <span class="stateface stateface-replace" :class="'stateface-' + $store.state.statePrev">{{$store.state.statePrev}}</span>
         </div>
       <div class="col-xs-4">
-        <h5 class="text-center">Gender</h5>
+        <h5 class="text-center" style="padding-right: 61px;">Gender</h5>
         <vue-chart chart-type="PieChart" :columns="PieGenderColumns" :rows="$store.state.PieGenderRows" :options="PieGenderOptions"></vue-chart>
       </div>
          <div class="col-xs-4">
-           <h5 class="text-center">Age</h5>
+           <h5 class="text-center"  style="padding-right: 61px;">Age</h5>
 <vue-chart chart-type="PieChart" :columns="PieAgeColumns" :rows="$store.state.PieAgeRows" :options="PieAgeOptions"></vue-chart>
       </div>
 <div class="col-xs-4">
-  <h5 class="text-center">Race</h5>
+  <h5 class="text-center"  style="padding-right: 61px;">Race</h5>
 <vue-chart chart-type="PieChart" :columns="PieRaceColumns" :rows="$store.state.PieRaceRows" :options="PieRaceOptions"></vue-chart>
       </div>
 
@@ -40,7 +40,7 @@ export default {
         height: 500,
         curveType: 'function',
         is3D: true,
-        legend: 'none',
+        //legend: 'none',
         pieSliceText: 'none',
         chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         slices: {
@@ -57,7 +57,7 @@ export default {
         height: 500,
         curveType: 'function',
         is3D: true,
-        legend: 'none',
+        //legend: 'none',
         pieSliceText: 'none',
         chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         slices: {
@@ -75,7 +75,7 @@ export default {
         curveType: 'function',
         chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
         is3D: true,
-        legend: 'none',
+        //legend: 'none',
         pieSliceText: 'none',
         slices: {
           0: { color: '#0c586f' },
