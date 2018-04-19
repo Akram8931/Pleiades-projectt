@@ -573,6 +573,7 @@ h2 + .row {
     top: auto;
     float: left;
     margin-left: 129px;
+    height:100px;
   }
 }
 
@@ -1035,7 +1036,7 @@ p {
   float: right;
 }
 .titlePage{
-  margin: 85px auto;
+  margin: 65px auto;
 }
 .paddtop{
   padding-top:28px;
