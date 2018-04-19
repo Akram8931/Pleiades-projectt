@@ -1,5 +1,5 @@
-npm install
 git pull origin development
+npm install
 cd frontend 
 npm install 
 npm run build

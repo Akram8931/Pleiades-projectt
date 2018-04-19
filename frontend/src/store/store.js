@@ -30,12 +30,10 @@ const state = {
   statePrev: '',
   functionalChartData: [],
   crossOrgChartData: [],
-  activeChartData: [],
-  selectedNode: [],
-  token: localStorage.getItem('user-token') || '',
-  status: '',
-  expiryDate: localStorage.getItem('expiry-date') || '',
   isExpired: true,
+  expiryDate: localStorage.getItem('expiry-date') || '',
+  status: '',
+  token: localStorage.getItem('user-token') || '',
 };
 const getters = {};
 const mutations = {
@@ -68,30 +66,9 @@ const mutations = {
   setFunctionalChartData(state, payload) {
     state.functionalChartData = payload;
   },
-
   setCrossOrgChartData(state, payload) {
     state.crossOrgChartData = payload;
   },
-  getSelectedNode(state, selectedNodeName) {
-    state.selectedNode = _.filter(state.activeChartData, (o) => {
-      if (o.indexOf(selectedNodeName) > -1) {
-        return o;
-      }
-    });
-  },
-  activeChartData(state, payload) {
-    if (payload === 'functional') {
-      state.activeChartData = state.functionalChartData;
-    } else if (payload === 'cross-org') {
-      state.activeChartData = state.crossOrgChartData;
-    }
-
-    state.selectedNode = state.activeChartData;
-  },
-  reDrawMainChart(state) {
-    state.selectedNode = state.activeChartData;
-  },
-
   // Login methods
   AUTH_REQUEST(state) {
     state.status = 'loading';
@@ -100,6 +77,9 @@ const mutations = {
     state.status = 'success';
     state.token = payload.token;
     state.expiryDate = payload.expiryDate;
+    if (Date.now() < state.expiryDate) {
+      state.isExpired = false;
+    }
   },
   AUTH_ERROR(state) {
     state.status = 'error';
@@ -131,23 +111,23 @@ const actions = {
         context.commit('showModal');
       });
   },
-  initChart({ commit }) {
-    axios.get('http://192.168.1.131:3000/functional_capability')
-      .then((response) => {
-        commit('setFunctionalChartData', response.data);
-      });
-
-
+  initCrossOrgChart({ commit }) {
     axios.get('http://192.168.1.131:3000/cross_org_capability')
       .then((response) => {
         commit('setCrossOrgChartData', response.data);
+      });
+  },
+  initfunctionalChart({ commit }) {
+    axios.get('http://192.168.1.131:3000/functional_capability')
+      .then((response) => {
+        commit('setFunctionalChartData', response.data);
       });
   },
   // Login Api
   AUTH_REQUEST({ commit }, user) {
     const NPromise = new Promise((resolve, reject) => {
       commit('AUTH_REQUEST');
-      axios({ url: 'auth', data: user, method: 'POST' })
+      axios({ url: 'http://192.168.1.131:3000/login', data: user, method: 'POST' })
         .then((resp) => {
           const token = resp.data.token;
           const expiryDate = resp.data.expiryDate;
