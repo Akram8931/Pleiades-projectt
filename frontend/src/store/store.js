@@ -30,7 +30,7 @@ const state = {
   statePrev: '',
   functionalChartData: [],
   crossOrgChartData: [],
-  isExpired: true,
+  isExpired: localStorage.getItem('isExpired') || 'true',
   expiryDate: localStorage.getItem('expiry-date') || '',
   status: '',
   token: localStorage.getItem('user-token') || '',
@@ -74,20 +74,37 @@ const mutations = {
     state.status = 'loading';
   },
   AUTH_SUCCESS(state, payload) {
+    debugger;
     state.status = 'success';
     state.token = payload.token;
     state.expiryDate = payload.expiryDate;
     if (Date.now() < state.expiryDate) {
-      state.isExpired = false;
+      state.isExpired = 'false';
+      localStorage.setItem('isExpired', state.isExpired);
+    } else {
+      localStorage.removeItem('user-token');
+      localStorage.removeItem('expiry-date');
+      localStorage.removeItem('isExpired');
     }
   },
   AUTH_ERROR(state) {
     state.status = 'error';
   },
-  checkExpiryDate(state, ExpiryDate) {
-    const currentDate = Date.now();
-    if (currentDate < ExpiryDate) {
-      state.isExpired = false;
+  initialiseStore(state) {
+    if (localStorage.getItem('user-token')) {
+      this.replaceState(
+        Object.assign(state, JSON.parse(localStorage.getItem('store'))),
+      );
+    }
+    if (localStorage.getItem('expiry-date')) {
+      this.replaceState(
+        Object.assign(state, JSON.parse(localStorage.getItem('expiry-date'))),
+      );
+    }
+    if (localStorage.getItem('isExpired')) {
+      this.replaceState(
+        Object.assign(state, JSON.parse(localStorage.getItem('isExpired'))),
+      );
     }
   },
 };
@@ -132,14 +149,17 @@ const actions = {
           const token = resp.data.token;
           const expiryDate = resp.data.expiryDate;
 
-          localStorage.setItem('user-token', token); // store the token in localstorage
-          localStorage.setItem('expiry-date', expiryDate); // store the expiry date in localstorage
+          localStorage.setItem('user-token', token);
+          localStorage.setItem('expiry-date', expiryDate);
+
           commit('AUTH_SUCCESS', { token, expiryDate });
+          localStorage.setItem('isExpired', state.isExpired);
           resolve(resp);
         }).catch((err) => {
           commit('AUTH_ERROR', err);
-          localStorage.removeItem('user-token'); // if the request fails, remove any possible user token if possible
-          localStorage.removeItem('expiry-date'); // if the request fails, remove any possible user expiry date if possible
+          localStorage.removeItem('user-token');
+          localStorage.removeItem('expiry-date');
+          localStorage.removeItem('isExpired');
 
           reject(err);
         });
@@ -154,3 +174,10 @@ const store = new Vuex.Store({
   actions,
 });
 export default store;
+
+
+store.subscribe((mutation, state) => {
+  localStorage.setItem('user-token', state.token);
+  localStorage.setItem('expiry-date', state.expiryDate);
+  localStorage.setItem('isExpired', state.isExpired);
+});
